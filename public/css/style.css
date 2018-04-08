@@ -1,0 +1,43 @@
+body{
+    background:  url() no-repeat center center fixed; 
+    background-color: #B2F596;
+    background-size: cover;
+    font-family: 'Spectral', serif;
+    content: center;
+    margin: 0rem !important;
+    padding: 0rem !important;
+    overflow-x: hidden !important;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+.map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+  }
+#floating-panel {
+    background-color: #fff;
+    border: 1px solid #999;
+    left: 25%;
+    padding: 5px;
+    position: absolute;
+    top: 10px;
+    z-index: 5;
+  }
