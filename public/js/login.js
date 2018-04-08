@@ -18,6 +18,8 @@ loginButton.onclick = function(){
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
+    }).then( () => {
+      window.location = "home.html";
     });
     var user = firebase.auth().currentUser;
     console.log(user);
