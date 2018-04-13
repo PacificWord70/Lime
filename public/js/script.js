@@ -18,6 +18,8 @@
       var loginPassword = document.getElementById('loginpassword');
       var loginButton = document.getElementById('loginButton');
       var logoutButton = document.getElementById('logout');
+      var resetPasswordButton = document.getElementById('resetPassword');
+      var resetEmail = document.getElementById('resetEmail');
 
 
       firebase.auth().onAuthStateChanged(function (user) {
@@ -26,6 +28,36 @@
           window.location = '/index.html';
         }
       });
+
+      if (resetPasswordButton != null) {
+
+        resetPasswordButton.onclick = function () {
+          firebase.auth().sendPasswordResetEmail(resetEmail.value).then(function () {
+
+          }).catch(function (error) {
+            console.log(error)
+          });
+          resetEmail.value = "";
+          toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-bottom-center",
+            "preventDuplicates": false,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          }
+          toastr.success("The email should be in your inbox", "Sent");
+        }
+      }
+
       if (logoutButton != null) {
         logoutButton.onclick = function () {
           firebase.auth().signOut().then(function () {
@@ -59,27 +91,27 @@
         console.log("Here");
         newAccountButton.onclick = function () {
           firebase.auth().createUserWithEmailAndPassword(email.value, password.value).then(() => {
-            var uid = firebase.auth().currentUser.uid;
-            console.log(uid);
+              var uid = firebase.auth().currentUser.uid;
+              console.log(uid);
 
-            var userObject = {
-              uid : uid,
-              phone: phone.value,
-              name : nameInput.value
-          }
-          var updates = {};
-          updates['/UserInfo/' + uid] = userObject;
-          return firebase.database().ref().update(updates);
-          })
-          .then(() => {
-            window.location = "home.html";
-          })
-          .catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
-            console.log(errorMessage);
-          });
+              var userObject = {
+                uid: uid,
+                phone: phone.value,
+                name: nameInput.value
+              }
+              var updates = {};
+              updates['/UserInfo/' + uid] = userObject;
+              return firebase.database().ref().update(updates);
+            })
+            .then(() => {
+              window.location = "home.html";
+            })
+            .catch(function (error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // ...
+              console.log(errorMessage);
+            });
         }
       }

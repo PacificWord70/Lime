@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,31 +15,34 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body class="justify-content-center">
 
     <!-- Start your project here-->
-    <br /><br />
+    <br />
+    <br />
     <div class="row justify-content-center">
-            <div class="card col-md-5 col-sm-11 z-depth-4">
+        <div class="card col-md-5 col-sm-11 z-depth-4">
             <div class="card-body">
                 <h1 class="card-title">Password</h2>
-                <p class="card-text">
-                <form class="px-4 py-3">
-                    <div class="form-group">
-                        <label for="exampleDropdownFormEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                    </div>
-                    <a href="login.html"class="btn success-color">Reset password</a>
-                </form>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="newacc.html">New around here? Sign up!</a>
-                <a class="dropdown-item" href="pswd.html">Forgot password? Click here!</a>
+                    <p class="card-text">
+
+                        <div class="form-group">
+                            <label for="exampleDropdownFormEmail1">Email address</label>
+                            <input type="email" class="form-control" id="resetEmail" placeholder="email@example.com">
+                        </div>
+                        <button class="btn success-color" id="resetPassword">Reset password</button>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="newacc.html">New around here? Sign up!</a>
+                        <a class="dropdown-item" href="index.html">Login</a>
             </div>
         </div>
     </div>
-    
+
 
     <!-- /Start your project here-->
 
@@ -53,6 +57,8 @@
     <script type="text/javascript" src="js/mdb.min.js"></script>
 
     <script type="text/javascript" src="js/script.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </body>
 
 </html>
