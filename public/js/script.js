@@ -10,24 +10,84 @@
       firebase.initializeApp(config);
 
       var newAccountButton = document.getElementById('newAccount');
+
       var email = document.getElementById('emailField');
       var password = document.getElementById('passwordField');
       var nameInput = document.getElementById('nameField');
       var phone = document.getElementById('phoneField');
+
       var loginEmail = document.getElementById('loginemail');
       var loginPassword = document.getElementById('loginpassword');
       var loginButton = document.getElementById('loginButton');
       var logoutButton = document.getElementById('logout');
+
       var resetPasswordButton = document.getElementById('resetPassword');
       var resetEmail = document.getElementById('resetEmail');
 
+      var profileName = document.getElementById('profileName');
+      var profileEmail = document.getElementById('profileEmail');
+      var profilePhonenumber = document.getElementById('profilePhonenumber');
+      var submitProfile = document.getElementById('submitProfile');
 
       firebase.auth().onAuthStateChanged(function (user) {
         console.log(user);
         if (!user && !(window.location.pathname == '/index.html' || window.location.pathname == '/pswd.html' || window.location.pathname == '/newacc.html')) {
           window.location = '/index.html';
+        } else {
+          if (window.location.pathname == '/profile.html') {
+            uid = firebase.auth().currentUser.uid;
+            firebase.database().ref('/UserInfo/' + uid).once('value').then(function (snapshot) {
+              //prints a json of courses to the console
+              //Course id is the value, the keys are meaning less
+              profileName.value = snapshot.val().name;
+              profilePhonenumber.value = snapshot.val().phone
+              profileEmail.value = user.email;
+            });
+          }
         }
       });
+
+      if (submitProfile != null) {
+        submitProfile.onclick = function () {
+          var user = firebase.auth().currentUser;
+          console.log(uid);
+          var userObject = {
+            uid: user.uid,
+            phone: profilePhonenumber.value,
+            name: profileName.value
+          }
+          var updates = {};
+          updates['/UserInfo/' + uid] = userObject;
+          
+          if (user.email != profileEmail.value) {
+            console.log(profileEmail.value)
+            user.updateEmail(profileEmail.value).then(function () {
+              // Update successful.
+            }).catch(function (error) {
+              console.log(error)
+            });
+          }
+          toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-bottom-center",
+            "preventDuplicates": false,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          }
+          toastr.success("Info Updated");
+          return firebase.database().ref().update(updates);
+        }
+      }
+
 
       if (resetPasswordButton != null) {
 
