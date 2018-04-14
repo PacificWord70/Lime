@@ -37,7 +37,7 @@
       var addCategoryButton = document.getElementById('addCategoryButton');
       var budget = {
         name: '',
-        categories : {
+        categories: {
 
         }
       }
@@ -128,9 +128,8 @@
       if (resetPasswordButton != null) {
 
         resetPasswordButton.onclick = function () {
-          firebase.auth().sendPasswordResetEmail(resetEmail.value).then(function () {
-            sleep(500);
-            window.location = '/index.html'; 
+          firebase.auth().sendPasswordResetEmail(resetEmail.value).finally(function () {
+            window.location = '/index.html';
           }).catch(function (error) {
             console.log(error)
           });
@@ -143,7 +142,7 @@
             "positionClass": "toast-bottom-center",
             "preventDuplicates": false,
             "showDuration": "300",
-            "hideDuration": "1000",
+            "hideDuration": "500",
             "timeOut": "5000",
             "extendedTimeOut": "1000",
             "showEasing": "swing",
@@ -152,8 +151,12 @@
             "hideMethod": "fadeOut"
           }
           toastr.success("The email should be in your inbox", "Sent");
-
         }
+      }
+
+      function sleep(miliseconds) {
+        var currentTime = new Date().getTime();
+        while (currentTime + miliseconds >= new Date().getTime()) {}
       }
 
       if (logoutButton != null) {
