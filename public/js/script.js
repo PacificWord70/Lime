@@ -19,6 +19,7 @@
       var loginEmail = document.getElementById('loginemail');
       var loginPassword = document.getElementById('loginpassword');
       var loginButton = document.getElementById('loginButton');
+
       var logoutButton = document.getElementById('logout');
 
       var resetPasswordButton = document.getElementById('resetPassword');
@@ -118,6 +119,8 @@
             "hideMethod": "fadeOut"
           }
           toastr.success("Info Updated");
+          sleep(500);
+          window.location = '/index.html'; 
           return firebase.database().ref().update(updates);
         }
       }
