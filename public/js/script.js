@@ -43,8 +43,6 @@
         }
       }
 
-
-
       firebase.auth().onAuthStateChanged(function (user) {
         console.log(user);
         if (!user && !(window.location.pathname == '/index.html' || window.location.pathname == '/pswd.html' || window.location.pathname == '/newacc.html')) {
@@ -55,36 +53,59 @@
             firebase.database().ref('/UserInfo/' + uid).once('value').then(function (snapshot) {
 
               profileName.value = snapshot.val().name;
-              profilePhonenumber.value = snapshot.val().phone
+              profilePhonenumber.value = snapshot.val().phone;
               profileEmail.value = user.email;
             });
           } else if (window.location.pathname == '/home.html') {
-            var uid = firebase.auth().currentUser.uid;
-
-            budgetSummary.innerHTML = "Example";
-
-            firebase.database().ref('/UserInfo/' + uid + '/UserBudgets/').once('value').then(function (snapshot) {
-              var string = [];
-              console.log(snapshot.val());
+            console.log("Here");
+            return firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
+              console.log(snapshot.val())
+              var reads = [];
               snapshot.forEach(function (childSnapshot) {
-                console.log(childSnapshot.val())
                 var id = childSnapshot.key;
-                var pro = firebase.database().ref('/Budgets/').child(id).once('value').then(function (snap) {
-                  console.log(snap.val());
-                  console.log("Snap");
-                  
-                  // string = string + "Example";
+                console.log(id);
+                var promise = firebase.database().ref('/Budgets/').child(id).once('value').then(function (snap) {
+                  // The Promise was fulfilled.
+                }, function (error) {
+                  console.error(error);
                 });
-                console.log(pro);
-                string.push(pro);
+                reads.push(promise);
               });
-              return Promise.all(string);              
-            }).then( (string) => {
-              console.log(string);
+              return Promise.all(reads);
+            }, function (error) {
+              console.error(error);
+            }).then(function (values) {
+              console.log(values);
             });
+
+
+
+
+            // var uid = firebase.auth().currentUser.uid;
+            // budgetSummary.innerHTML = "Example";
+            // firebase.database().ref('/UserInfo/' + uid + '/UserBudgets/').once('value').then(function (snapshot) {
+            //   var string = [];
+            //   console.log(snapshot.val());
+            //   snapshot.forEach(function (childSnapshot) {
+            //     console.log(childSnapshot.val())
+            //     var id = childSnapshot.key;
+            //     var pro = firebase.database().ref('/Budgets/').child(id).once('value').then(function (snap) {
+            //       console.log(snap.val());
+            //       console.log("Snap");
+            //     });
+            //     console.log(pro);
+            //     string.push(pro);
+            //   });
+            //   return Promise.all(string);
+            // }).then((string) => {
+            //   console.log(string);
+            // });
           }
         }
       });
+
+
+
 
       if (window.location.pathname == '/home.html') {
         newBudgetButton.onclick = function () {
