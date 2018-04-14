@@ -29,6 +29,18 @@
       var profilePhonenumber = document.getElementById('profilePhonenumber');
       var submitProfile = document.getElementById('submitProfile');
 
+      var newBudgetName = document.getElementById('newBudgetName');
+      var newCategories = document.getElementById('newCategories');
+      var newLimit = document.getElementById('newLimit');
+      var newBudgetButton = document.getElementById('newBudgetButton');
+      var addCategoryButton = document.getElementById('addCategoryButton');
+      var budget = {
+        name: '',
+        categories : {
+
+        }
+      }
+
       firebase.auth().onAuthStateChanged(function (user) {
         console.log(user);
         if (!user && !(window.location.pathname == '/index.html' || window.location.pathname == '/pswd.html' || window.location.pathname == '/newacc.html')) {
@@ -47,6 +59,19 @@
         }
       });
 
+      if (window.location.pathname == '/home.html') {
+        newBudgetButton.onclick = function () {
+          budget.name = newBudgetName.value
+          console.log(budget)
+        }
+        addCategoryButton.onclick = function () {
+          var str = newCategories.value;
+          budget.categories[str] = newLimit.value;
+          console.log(budget)
+        }
+      }
+
+
       if (submitProfile != null) {
         submitProfile.onclick = function () {
           var user = firebase.auth().currentUser;
@@ -58,7 +83,7 @@
           }
           var updates = {};
           updates['/UserInfo/' + uid] = userObject;
-          
+
           if (user.email != profileEmail.value) {
             console.log(profileEmail.value)
             user.updateEmail(profileEmail.value).then(function () {
