@@ -54,23 +54,32 @@
     </nav>
     
     <div class="container">
-      <br />
+        <br />
         <div class="row justify-content-center">
-            <div class="col-md-7 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="card-title">All Expenses</h1>
-                        <div id="allexpenses">
-                            
+                        <h1 class="card-title">Create New Budget</h1>
+                        <div class="md-form">
+                            <input type="text" id="newBudgetName" class="form-control">
+                            <label for="newBudgetName">New Budget Name</label>
                         </div>
+                        <div class="md-form">
+                            <input type="text" id="newCategories" class="form-control">
+                            <label for="newCategories">New Category</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="newLimit" class="form-control">
+                            <label for="newLimit">Category Limit</label>
+                        </div>
+                        <button class="btn btn-primary" id="newBudgetButton">Submit</button>
+                        <button class="btn btn-success" id="addCategoryButton">Add Categories</button>
+                        <a href="files.html" class="btn btn-blue-grey">Back</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-6">
-                <a href="newbudget.html"><img style="width:30%;" src="img/cat.png"></a><br />
-                <a href="newcat.html"><img style="width:30%;" src="img/folder.png"></a>
-            </div>
         </div>
+    </div>
 
 
     <!-- /Start your project here-->
