@@ -63,6 +63,15 @@
         newBudgetButton.onclick = function () {
           budget.name = newBudgetName.value
           console.log(budget)
+          var budgetID = firebase.database().ref().child('Budgets').push().key;
+          var updates = {};
+          updates['/Budgets/' + budgetID] = budget;
+          firebase.database().ref().update(updates);
+
+          var uid = firebase.auth().currentUser.uid;
+          console.log(uid);
+          updates['/UserInfo/' + uid + '/UserBudgets/' + budgetID] = budgetID;
+          return firebase.database().ref().update(updates);
         }
         addCategoryButton.onclick = function () {
           var str = newCategories.value;
