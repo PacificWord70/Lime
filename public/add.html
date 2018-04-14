@@ -21,52 +21,56 @@
 
     <!-- Start your project here-->
     <br /><br />
-    <div class="row justify-content-center">
-        <div class="card col-md-8 col-sm-11 z-depth-4">
-            <div class="card-body justify-content-center">
-                <div>
-                    <br />
-                    <h1 class="card-title">Add a New Expense</h2>
-                    <div class="row card-text">
-                        <form class="col-md-5 col-sm-11">
-                            <div class="form-group">
-                                <label for="exampleDropdownFormEmail1">Amount</label>
-                                <input class="form-control" id="moneyamt" placeholder="0.00">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleDropdownFormPassword1">Store Address</label>
-                                <input class="form-control" id="streetaddr" placeholder="1234 West Street, City, CA 98765">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleDropdownFormEmail1">Categories</label><br />
-                                <input type="checkbox"> Category 1<br />
-                                <input type="checkbox"> Category 1<br />
-                                <input type="checkbox"> Category 1<br />
-                            </div>
-                            <a href="files.html" onclick="myFunction()" class="btn success-color">Submit</a>
-                        </form>
-                        <form class=" card col-md-7 col-sm-11">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class=" col-md-8 col-sm-11">
+                <div class="card z-depth-4">
+                    <div class="card-body justify-content-center">
+                        <div>
                             <br />
-                            <h4>Store Locator</h4>
-                            <p>Please utilize this to find the street address of the store your expense comes from.</p>
-                            <div class="form-group">
-                                <label for="exampleDropdownFormPassword1">Store Name</label>
-                                <input class="form-control" id="locatestore" placeholder="Whole Foods">
+                            <h1 class="card-title">Add a New Expense</h2>
+                            <div class="row card-text">
+                                <form class="col-md-5 col-sm-11">
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormEmail1">Amount</label>
+                                        <input class="form-control" id="moneyamt" placeholder="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormPassword1">Store Address</label>
+                                        <input class="form-control" id="streetaddr" placeholder="1234 West Street, City, CA 98765">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormEmail1">Categories</label><br />
+                                        <input type="checkbox"> Category 1<br />
+                                        <input type="checkbox"> Category 1<br />
+                                        <input type="checkbox"> Category 1<br />
+                                    </div>
+                                    <a href="files.html" onclick="myFunction()" class="btn success-color">Submit</a>
+                                </form>
+                                <form class=" card col-md-7 col-sm-11">
+                                    <br />
+                                    <h4>Store Locator</h4>
+                                    <p>Please utilize this to find the street address of the store your expense comes from.</p>
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormPassword1">Store Name</label>
+                                        <input class="form-control" id="locatestore" placeholder="Whole Foods">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="exampleDropdownFormPassword1">City and state</label>
+                                            <input class="form-control" id="locatecity" placeholder="San Jose, CA">
+                                    </div>
+                                    <div>
+                                        <iframe
+                                            width="432"
+                                            height="300"
+                                            frameborder="0" style="border:0"
+                                            src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBPOF-ua_WDi8RsTSLhj6_XHisA4-d6LT0&q=Whole+Foods,San+Jose,CA" allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                    <a href="#"class="btn success-color">Locate</a>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                    <label for="exampleDropdownFormPassword1">City and state</label>
-                                    <input class="form-control" id="locatecity" placeholder="San Jose, CA">
-                            </div>
-                            <div>
-                                <iframe
-                                    width="432"
-                                    height="300"
-                                    frameborder="0" style="border:0"
-                                    src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBPOF-ua_WDi8RsTSLhj6_XHisA4-d6LT0&q=Whole+Foods,San+Jose,CA" allowfullscreen>
-                                </iframe>
-                            </div>
-                            <a href="#"class="btn success-color">Locate</a>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
