@@ -1,6 +1,6 @@
 body{
-    background:  url() no-repeat center center fixed; 
-    background-color: #FFFFFF;
+    background:  url("../img/background.svg") no-repeat center center fixed; 
+    background-color: rgb(149, 192, 122);
     background-size: cover;
     font-family: 'Spectral', serif;
     content: center;
