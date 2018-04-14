@@ -35,6 +35,7 @@
       var newLimit = document.getElementById('newLimit');
       var newBudgetButton = document.getElementById('newBudgetButton');
       var addCategoryButton = document.getElementById('addCategoryButton');
+      var budgetSummary = document.getElementById('budgetSummary');
       var budget = {
         name: '',
         categories: {
@@ -42,19 +43,44 @@
         }
       }
 
+
+
       firebase.auth().onAuthStateChanged(function (user) {
         console.log(user);
         if (!user && !(window.location.pathname == '/index.html' || window.location.pathname == '/pswd.html' || window.location.pathname == '/newacc.html')) {
           window.location = '/index.html';
         } else {
           if (window.location.pathname == '/profile.html') {
-            uid = firebase.auth().currentUser.uid;
+            var uid = firebase.auth().currentUser.uid;
             firebase.database().ref('/UserInfo/' + uid).once('value').then(function (snapshot) {
-              //prints a json of courses to the console
-              //Course id is the value, the keys are meaning less
+
               profileName.value = snapshot.val().name;
               profilePhonenumber.value = snapshot.val().phone
               profileEmail.value = user.email;
+            });
+          } else if (window.location.pathname == '/home.html') {
+            var uid = firebase.auth().currentUser.uid;
+
+            budgetSummary.innerHTML = "Example";
+
+            firebase.database().ref('/UserInfo/' + uid + '/UserBudgets/').once('value').then(function (snapshot) {
+              var string = [];
+              console.log(snapshot.val());
+              snapshot.forEach(function (childSnapshot) {
+                console.log(childSnapshot.val())
+                var id = childSnapshot.key;
+                var pro = firebase.database().ref('/Budgets/').child(id).once('value').then(function (snap) {
+                  console.log(snap.val());
+                  console.log("Snap");
+                  
+                  // string = string + "Example";
+                });
+                console.log(pro);
+                string.push(pro);
+              });
+              return Promise.all(string);              
+            }).then( (string) => {
+              console.log(string);
             });
           }
         }
@@ -62,6 +88,7 @@
 
       if (window.location.pathname == '/home.html') {
         newBudgetButton.onclick = function () {
+          var uid = firebase.auth().currentUser.uid;
           budget.name = newBudgetName.value
           console.log(budget)
           var budgetID = firebase.database().ref().child('Budgets').push().key;
@@ -69,7 +96,7 @@
           updates['/Budgets/' + budgetID] = budget;
           firebase.database().ref().update(updates);
 
-          var uid = firebase.auth().currentUser.uid;
+
           console.log(uid);
           updates['/UserInfo/' + uid + '/UserBudgets/' + budgetID] = budgetID;
           return firebase.database().ref().update(updates);
