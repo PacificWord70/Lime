@@ -35,6 +35,7 @@
       var newLimit = document.getElementById('newLimit');
       var newBudgetButton = document.getElementById('newBudgetButton');
       var addCategoryButton = document.getElementById('addCategoryButton');
+
       var budgetSummary = document.getElementById('budgetSummary');
       var budget = {
         name: '',
@@ -57,48 +58,50 @@
               profileEmail.value = user.email;
             });
           } else if (window.location.pathname == '/home.html') {
-            console.log("Here");
-            return firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
-              console.log(snapshot.val())
-              var reads = [];
-              snapshot.forEach(function (childSnapshot) {
-                var id = childSnapshot.key;
-                console.log(id);
-                var promise = firebase.database().ref('/Budgets/').child(id).once('value').then(function (snap) {
-                  // The Promise was fulfilled.
-                }, function (error) {
-                  console.error(error);
-                });
-                reads.push(promise);
-              });
-              return Promise.all(reads);
-            }, function (error) {
-              console.error(error);
-            }).then(function (values) {
-              console.log(values);
-            });
-
-
-
-
-            // var uid = firebase.auth().currentUser.uid;
-            // budgetSummary.innerHTML = "Example";
-            // firebase.database().ref('/UserInfo/' + uid + '/UserBudgets/').once('value').then(function (snapshot) {
-            //   var string = [];
-            //   console.log(snapshot.val());
+            // console.log("Here");
+            // return firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
+            //   var reads = [];
             //   snapshot.forEach(function (childSnapshot) {
-            //     console.log(childSnapshot.val())
             //     var id = childSnapshot.key;
-            //     var pro = firebase.database().ref('/Budgets/').child(id).once('value').then(function (snap) {
-            //       console.log(snap.val());
-            //       console.log("Snap");
+            //     console.log(id);
+            //     var promise = firebase.database().ref('/Budgets/' + id).once('value').then(function (snap) {
+            //       return snap.val();
+            //       // The Promise was fulfilled.
+            //     }, function (error) {
+            //       console.error(error);
             //     });
-            //     console.log(pro);
-            //     string.push(pro);
+            //     console.log(promise);
+            //     reads.push(promise);
             //   });
-            //   return Promise.all(string);
-            // }).then((string) => {
-            //   console.log(string);
+            //   return Promise.all(reads);
+            // }, function (error) {
+            //   console.error(error);
+            // }).then(function (values) {
+            //   console.log(values);
+            //   var str = ''
+            //   for(var bug of values){
+            //     str = str + "<h1>" + bug.name + "</h1>"
+            //     str = str + "<table>"
+            //               + "<tr>"
+            //               + "<th>Catagory</th>"
+            //               + "<th>Amount Set</th>"
+            //               + "</tr>"
+            //     for(var cat in bug.categories){
+            //       str = str
+            //               + "<tr>"
+            //               + "<th>" + cat + "</th>"
+            //               + "<th>" + bug.categories[cat] + "</th>"
+            //               + "</tr>"
+            //       console.log(cat)
+            //       console.log(bug.categories[cat])
+            //     }
+            //     console.log(bug.categories)
+            //     console.log(bug.name)
+            //     str = str + "</table>"
+            //   }
+              
+            //   console.log(str);
+            //   budgetSummary.innerHTML = str;
             // });
           }
         }
