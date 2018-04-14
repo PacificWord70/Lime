@@ -119,8 +119,7 @@
             "hideMethod": "fadeOut"
           }
           toastr.success("Info Updated");
-          sleep(500);
-          window.location = '/index.html'; 
+
           return firebase.database().ref().update(updates);
         }
       }
@@ -130,7 +129,8 @@
 
         resetPasswordButton.onclick = function () {
           firebase.auth().sendPasswordResetEmail(resetEmail.value).then(function () {
-
+            sleep(500);
+            window.location = '/index.html'; 
           }).catch(function (error) {
             console.log(error)
           });
@@ -152,6 +152,7 @@
             "hideMethod": "fadeOut"
           }
           toastr.success("The email should be in your inbox", "Sent");
+
         }
       }
 
