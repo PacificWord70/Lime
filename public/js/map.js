@@ -16,7 +16,7 @@ var heatmapData = [
   ];
 
   
-  var home = new google.maps.LatLng(37.774546, -122.433523);
+  var home = new google.maps.LatLng(40.425869, -86.908066);
   var infoWindow = new google.maps.InfoWindow;
   map = new google.maps.Map(document.getElementById('map'), {
     center: home,
