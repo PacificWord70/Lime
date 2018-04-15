@@ -54,33 +54,9 @@
     </nav>
     <br>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="card-title">Create New Budget</h1>
-                        <div class="md-form">
-                            <input type="text" id="newBudgetName" class="form-control">
-                            <label for="newBudgetName">New Budget Name</label>
-                        </div>
-                        <div class="md-form">
-                            <input type="text" id="newCategories" class="form-control">
-                            <label for="newCategories">New Category</label>
-                        </div>
-                        <div class="md-form">
-                            <input type="text" id="newLimit" class="form-control">
-                            <label for="newLimit">Category Limit</label>
-                        </div>
-                        <button class="btn btn-primary" id="newBudgetButton">Submit</button>
-                        <button class="btn btn-success" id="addCategoryButton">Add Categories</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <br />
         <div class="row justify-content-center">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-title">Budget Summary</h1>
@@ -90,23 +66,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <br />
-        <div class="row">
-            
-            <div class="col-md-6 col-sm-11">
+            <br />
+            <div class="col-md-8 col-sm-12">
                 <div class="card-body">
-                    <h1 class="card-title">Expense Clusters</h1>
-                    <p class="card-text">
-                        <iframe
-                            width="95%"
-                            height="450"
-                            frameborder="0"
-                            style="border:0"
-                            src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDVhxoHJdopRN5GM260r2aYESsKk6ZEpYM&q=Whole+Foods,San+Jose,CA"
-                            allowfullscreen>
-                        </iframe>
-                    </p>
+                    <h1 class="card-title">Where you spend your $$$</h1>
+                    <div id="map" style="width:100%;height:30rem;">
+                    </div>
                 </div>
             </div>
         </div>
@@ -133,9 +98,10 @@
 
     <script type="text/javascript" src="js/mdb.min.js"></script>
 
-    <script type="text/javascript" src="js/heatmap.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=&libraries=visualization"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJfQXh60Bil0Go9CoiOB2eO344kmTQEH0&libraries=visualization"></script>
+
+    <script type="text/javascript" src="js/map.js"></script>
 </body>
 
 </html>
