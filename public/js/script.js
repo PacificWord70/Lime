@@ -110,13 +110,14 @@
 
 
 
-      if (window.location.pathname == '/home.html') {
+      if (window.location.pathname == '/newbudget.html') {
         newBudgetButton.onclick = function () {
           var uid = firebase.auth().currentUser.uid;
           budget.name = newBudgetName.value
           console.log(budget)
           var budgetID = firebase.database().ref().child('Budgets').push().key;
           var updates = {};
+          budget.BID = budgetID;
           updates['/Budgets/' + budgetID] = budget;
           firebase.database().ref().update(updates);
 
