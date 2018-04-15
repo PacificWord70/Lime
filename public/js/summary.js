@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 str = str + "<hr><h4>" + bug.name + "</h4>"
                 str = str + "<table class=\"table table-bordered\"><thead>" +
                     "<tr>" +
-                    "<th>Catagory</th>" +
+                    "<th>Category</th>" +
                     "<th>Amount Set</th>" +
                     "</tr></thead>"
                 for (var cat in bug.categories) {
