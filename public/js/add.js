@@ -57,9 +57,6 @@ $("#budgetSelect").on('change', function () {
         console.log(values);
         var i = 0;
         for (var bug of values) {
-            console.log("Here")
-            console.log($('#budgetSelect option:selected').text())
-            console.log()
             if (bug.name == $('#budgetSelect option:selected').text()) {
                 break;
             }
