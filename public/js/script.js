@@ -97,11 +97,6 @@
           profile.uid = user.uid;
           profile.phone = profilePhonenumber.value;
           profile.name = profileName.value;
-          // var userObject = {
-          //   uid: user.uid,
-          //   phone: profilePhonenumber.value,
-          //   name: profileName.value
-          // }
           var updates = {};
           updates['/UserInfo/' + user.uid] = profile;
 

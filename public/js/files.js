@@ -22,6 +22,13 @@ firebase.auth().onAuthStateChanged(function (user) {
         console.error(error);
     }).then(function (values) {
         console.log(values);
+        for(bug of values){
+            console.log(bug.name);
+            console.log(typeof bug.Expenses)
+            for(exp in bug.Expenses){
+                console.log(exp);
+            }
+        }
+        allexpenses.innerHTML = "You spend the money"
     });
-    allexpenses.innerHTML = "You spend the money"
 });

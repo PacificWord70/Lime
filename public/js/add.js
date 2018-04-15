@@ -57,12 +57,15 @@ $("#budgetSelect").on('change', function () {
         console.log(values);
         var i = 0;
         for (var bug of values) {
-            if (bug.name == budgetSelect.value) {
+            console.log("Here")
+            console.log($('#budgetSelect option:selected').text())
+            console.log()
+            if (bug.name == $('#budgetSelect option:selected').text()) {
                 break;
             }
             i++;
         }
-        console.log(values[i]);
+        console.log(i);
         var str1 = ''
         for (var cat in values[i].categories) {
             console.log(cat)
