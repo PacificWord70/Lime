@@ -14,11 +14,13 @@ newExpenseButton.onclick = function () {
     for (var i = 0; i < bar.length; ++i) {
         rv[i] = bar[i];
     }
+    var dt = new Date();
     console.log(rv);
     var expense = {
         streetaddr: streetaddr.value,
         moneyamt: moneyamt.value,
-        categories: rv
+        categories: rv,
+        date : dt.toUTCString()
     }
     var expenseID = firebase.database().ref().child('/Budgets/' + foo.val() + '/Expenses/').push().key;
     var updates = {};
