@@ -84,7 +84,11 @@
         }
         addCategoryButton.onclick = function () {
           var str = newCategories.value;
-          budget.categories[str] = newLimit.value;
+          budget.categories[str] = {
+              total: newLimit.value,
+              spent: newLimit.value
+          } 
+                      newLimit.value;
           console.log(budget)
         }
       }
