@@ -76,8 +76,6 @@
           budget.BID = budgetID;
           updates['/Budgets/' + budgetID] = budget;
           firebase.database().ref().update(updates);
-
-
           console.log(uid);
           updates['/UserInfo/' + uid + '/UserBudgets/' + budgetID] = budgetID;
           return firebase.database().ref().update(updates);
@@ -86,9 +84,8 @@
           var str = newCategories.value;
           budget.categories[str] = {
               total: newLimit.value,
-              spent: newLimit.value
+              spent: 0
           } 
-                      newLimit.value;
           console.log(budget)
         }
       }

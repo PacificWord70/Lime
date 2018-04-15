@@ -29,13 +29,15 @@ firebase.auth().onAuthStateChanged(function (user) {
                 str = str + "<table class=\"table table-bordered\"><thead>" +
                     "<tr>" +
                     "<th>Category</th>" +
-                    "<th>Amount Set</th>" +
+                    "<th>Left</th>" +
+                    "<th>Total</th>" +
                     "</tr></thead>"
                 for (var cat in bug.categories) {
                     str = str +
                         "<tbody><tr>" +
                         "<td>" + cat + "</td>" +
-                        "<td>$" + bug.categories[cat] + "</td>" +
+                        "<td>$" + (bug.categories[cat].total - bug.categories[cat].spent) + "</td>" +
+                        "<td>$" + bug.categories[cat].total + "</td>" +
                         "</tr></tbody>"
                     console.log(cat)
                     console.log(bug.categories[cat])

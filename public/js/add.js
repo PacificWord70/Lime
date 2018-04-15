@@ -20,12 +20,27 @@ newExpenseButton.onclick = function () {
         streetaddr: streetaddr.value,
         moneyamt: moneyamt.value,
         categories: rv,
-        date : dt.toUTCString()
+        date: dt.toUTCString()
     }
     var expenseID = firebase.database().ref().child('/Budgets/' + foo.val() + '/Expenses/').push().key;
     var updates = {};
-    updates['/Budgets/' + foo.val() + '/Expenses/' + expenseID ] = expense;
-    return firebase.database().ref().update(updates);
+
+    for (let cat in rv) {
+        console.log(rv[cat]);
+        firebase.database().ref('/Budgets/' + foo.val() + '/categories/' + rv[cat] + '/spent').once('value').then(function (snap) {
+            console.log(rv[cat]);
+            console.log("Current Value", parseInt(snap.val()));
+            console.log("New Value", parseInt(snap.val()) + parseInt(moneyamt.value));
+
+            updates['/Budgets/' + foo.val() + '/categories/' + rv[cat] + '/spent'] = parseInt(snap.val()) + parseInt(moneyamt.value);
+            updates['/Budgets/' + foo.val() + '/Expenses/' + expenseID] = expense;
+            return firebase.database().ref().update(updates);
+        }, function (error) {
+            console.error(error);
+        });
+
+    }
+
 }
 
 $(document).ready(function () {
