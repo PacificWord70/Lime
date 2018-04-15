@@ -20,7 +20,7 @@ var heatmapData = [
   var infoWindow = new google.maps.InfoWindow;
   map = new google.maps.Map(document.getElementById('map'), {
     center: home,
-    zoom: 13,
+    zoom: 14,
     mapTypeId: 'satellite'
   });
 

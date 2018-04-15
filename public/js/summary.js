@@ -25,18 +25,18 @@ firebase.auth().onAuthStateChanged(function (user) {
             var str = ''
             for (var bug of values) {
                 // TODO: Add MDBootstrap classes
-                str = str + "<h1>" + bug.name + "</h1>"
-                str = str + "<table>" +
+                str = str + "<hr><h4>" + bug.name + "</h4>"
+                str = str + "<table class=\"table table-bordered\"><thead>" +
                     "<tr>" +
                     "<th>Catagory</th>" +
                     "<th>Amount Set</th>" +
-                    "</tr>"
+                    "</tr></thead>"
                 for (var cat in bug.categories) {
                     str = str +
-                        "<tr>" +
-                        "<th>" + cat + "</th>" +
-                        "<th>" + bug.categories[cat] + "</th>" +
-                        "</tr>"
+                        "<tbody><tr>" +
+                        "<td>" + cat + "</td>" +
+                        "<td>$" + bug.categories[cat] + "</td>" +
+                        "</tr></tbody>"
                     console.log(cat)
                     console.log(bug.categories[cat])
                 }
