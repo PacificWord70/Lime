@@ -43,6 +43,7 @@
 
         }
       }
+      var profile;
 
       firebase.auth().onAuthStateChanged(function (user) {
         console.log(user);
@@ -52,7 +53,8 @@
           if (window.location.pathname == '/profile.html') {
             var uid = firebase.auth().currentUser.uid;
             firebase.database().ref('/UserInfo/' + uid).once('value').then(function (snapshot) {
-
+              profile = snapshot.val();
+            
               profileName.value = snapshot.val().name;
               profilePhonenumber.value = snapshot.val().phone;
               profileEmail.value = user.email;
@@ -92,13 +94,16 @@
         submitProfile.onclick = function () {
           var user = firebase.auth().currentUser;
           console.log(user.uid);
-          var userObject = {
-            uid: user.uid,
-            phone: profilePhonenumber.value,
-            name: profileName.value
-          }
+          profile.uid = user.uid;
+          profile.phone = profilePhonenumber.value;
+          profile.name = profileName.value;
+          // var userObject = {
+          //   uid: user.uid,
+          //   phone: profilePhonenumber.value,
+          //   name: profileName.value
+          // }
           var updates = {};
-          updates['/UserInfo/' + user.uid] = userObject;
+          updates['/UserInfo/' + user.uid] = profile;
 
           if (user.email != profileEmail.value) {
             console.log(profileEmail.value)

@@ -1,7 +1,9 @@
 var allexpenses = document.getElementById('allexpenses');
 
 firebase.auth().onAuthStateChanged(function (user) {
+    console.log(user.id);
     return firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
+        console.log(snapshot.val());
         var reads = [];
         snapshot.forEach(function (childSnapshot) {
             var id = childSnapshot.key;
@@ -20,19 +22,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         console.error(error);
     }).then(function (values) {
         console.log(values);
-        var str = ''
-        for (var bug of values) {
-            str = str + "<option value=\"" + bug.BID + "\">" + bug.name + "</option>"
-        }
-        console.log(values[0]);
-        var str1 = ''
-        for (var cat in values[0].categories) {
-            console.log(cat)
-            // console.log(bug.categories[cat])
-            str1 = str1 + "<option value=\"" + cat + "\">" + cat + "</option>"
-        }
-
-        console.log(str);
     });
     allexpenses.innerHTML = "You spend the money"
 });
