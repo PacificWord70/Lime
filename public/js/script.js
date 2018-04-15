@@ -91,14 +91,14 @@
       if (submitProfile != null) {
         submitProfile.onclick = function () {
           var user = firebase.auth().currentUser;
-          console.log(uid);
+          console.log(user.uid);
           var userObject = {
             uid: user.uid,
             phone: profilePhonenumber.value,
             name: profileName.value
           }
           var updates = {};
-          updates['/UserInfo/' + uid] = userObject;
+          updates['/UserInfo/' + user.uid] = userObject;
 
           if (user.email != profileEmail.value) {
             console.log(profileEmail.value)
