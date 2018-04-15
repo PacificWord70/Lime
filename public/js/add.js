@@ -1,11 +1,29 @@
 var budgetSelect = document.getElementById('budgetSelect');
 var catogoriesSelect = document.getElementById('catogoriesSelect');
+var moneyamt = document.getElementById("moneyamt");
+var streetaddr = document.getElementById("streetaddr");
+var newExpenseButton = document.getElementById("newExpenseButton");
 
-
-
-function myFunction() {
-    document.getElementById("moneyamt");
-    document.getElementById("streetaddr");
+newExpenseButton.onclick = function () {
+    var foo = $('#budgetSelect');
+    var bar = $('#catogoriesSelect').val();
+    console.log(foo.val(), foo.text(), bar)
+    console.log(moneyamt.value);
+    console.log(streetaddr.value);
+    var rv = {}
+    for (var i = 0; i < bar.length; ++i) {
+        rv[i] = bar[i];
+    }
+    console.log(rv);
+    var expense = {
+        streetaddr: streetaddr.value,
+        moneyamt: moneyamt.value,
+        categories: rv
+    }
+    var expenseID = firebase.database().ref().child('/Budgets/' + foo.val() + '/Expenses/').push().key;
+    var updates = {};
+    updates['/Budgets/' + foo.val() + '/Expenses/' + expenseID ] = expense;
+    return firebase.database().ref().update(updates);
 }
 
 $(document).ready(function () {
@@ -37,7 +55,7 @@ $("#budgetSelect").on('change', function () {
         console.log(values);
         var i = 0;
         for (var bug of values) {
-            if(bug.name == budgetSelect.value) {
+            if (bug.name == budgetSelect.value) {
                 break;
             }
             i++;
@@ -75,7 +93,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         console.log(values);
         var str = ''
         for (var bug of values) {
-            str = str + "<option value=\"" + bug.name + "\">" + bug.name + "</option>"
+            str = str + "<option value=\"" + bug.BID + "\">" + bug.name + "</option>"
         }
         console.log(values[0]);
         var str1 = ''
