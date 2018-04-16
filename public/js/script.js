@@ -205,7 +205,7 @@
 
               var userObject = {
                 uid: uid,
-                phone: phone.value.replace(/\s/g, '').replace(/-/g,"").replace(/\//g,"").replace(/\(/g,"").replace(/\)/g,""),
+                phone: phone.value,
                 name: nameInput.value
               }
               var updates = {};
@@ -213,6 +213,25 @@
               return firebase.database().ref().update(updates);
             })
             .then(() => {
+              data = {
+                  "number":phone.value,
+                  "name" : nameInput.value 
+              }
+              jQuery.ajax({
+                url: "https://us-central1-lime-4e46e.cloudfunctions.net/message/hello",
+                type: "POST",
+                data: {number: phone.value, name : nameInput.value },
+                dataType: "json",
+                beforeSend: function(x) {
+                  if (x && x.overrideMimeType) {
+                    x.overrideMimeType("application/j-son;charset=UTF-8");
+                  }
+                },
+                success: function(result) {
+              //Write your code here
+                  console.log(success);
+                }
+      });  
               window.location = "home.html";
             })
             .catch(function (error) {
