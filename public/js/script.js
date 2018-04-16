@@ -75,7 +75,9 @@
           firebase.database().ref().update(updates);
           console.log(uid);
           updates['/UserInfo/' + uid + '/UserBudgets/' + budgetID] = budgetID;
-          return firebase.database().ref().update(updates);
+          return firebase.database().ref().update(updates).then(() => {
+            window.location = '/home.html'
+          });
         }
         addCategoryButton.onclick = function () {
           var str = newCategories.value;
