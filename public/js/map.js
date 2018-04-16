@@ -1,7 +1,7 @@
 var heatmapData = [
   
 ];
- var myVar = setTimeout(myTimer, 1000);
+var myVar = setTimeout(myTimer, 1000);
 
 function myTimer() {
   var heatmap = new google.maps.visualization.HeatmapLayer({
@@ -9,7 +9,7 @@ function myTimer() {
   });
   heatmap.setMap(map);
 }
-
+myVar
 
 firebase.auth().onAuthStateChanged(function (user) {
   var home = new google.maps.LatLng(40.425869, -86.908066);
