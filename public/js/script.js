@@ -54,7 +54,7 @@
             var uid = firebase.auth().currentUser.uid;
             firebase.database().ref('/UserInfo/' + uid).once('value').then(function (snapshot) {
               profile = snapshot.val();
-            
+
               profileName.value = snapshot.val().name;
               profilePhonenumber.value = snapshot.val().phone;
               profileEmail.value = user.email;
@@ -82,9 +82,9 @@
         addCategoryButton.onclick = function () {
           var str = newCategories.value;
           budget.categories[str] = {
-              total: newLimit.value,
-              spent: 0
-          } 
+            total: newLimit.value,
+            spent: 0
+          }
           newCategories.value = ""
           newLimit.value = ""
           console.log(budget)
@@ -194,11 +194,11 @@
         }
       }
 
-      $("#phoneField").on("change keyup paste click", function(){
+      $("#phoneField").on("change keyup paste click", function () {
         console.log("Change")
-        var current = $("#phoneField").val().substring(2).replace(/[\D]/g,'');
+        var current = $("#phoneField").val().substring(2).replace(/[\D]/g, '');
         $("#phoneField").val("+1" + current)
-    })
+      })
 
       if (newAccountButton != null) {
         console.log("Here");
@@ -218,26 +218,32 @@
             })
             .then(() => {
               data = {
-                  "number":phone.value,
-                  "name" : nameInput.value 
+                "number": phone.value,
+                "name": nameInput.value
               }
               jQuery.ajax({
                 url: "https://us-central1-lime-4e46e.cloudfunctions.net/message/hello",
                 type: "POST",
-                data: {number: phone.value, name : nameInput.value },
+                data: {
+                  number: phone.value,
+                  name: nameInput.value
+                },
                 dataType: "json",
-                beforeSend: function(x) {
+                beforeSend: function (x) {
                   if (x && x.overrideMimeType) {
                     x.overrideMimeType("application/j-son;charset=UTF-8");
                   }
                 },
-                success: function(result) {
-              //Write your code here
-                  console.log(success);
+                success: function (result) {
+                  //Write your code here
+                  console.log("Success",success);
+                  
+                },
+                complete: function(data) {
                   window.location = "home.html";
                 }
-      });  
-              window.location = "home.html";
+              });
+              // window.location = "home.html";
             })
             .catch(function (error) {
               // Handle Errors here.
