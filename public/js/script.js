@@ -85,6 +85,8 @@
               total: newLimit.value,
               spent: 0
           } 
+          newCategories.value = ""
+          newLimit.value = ""
           console.log(budget)
         }
       }
