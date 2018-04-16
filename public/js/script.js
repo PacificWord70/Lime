@@ -63,9 +63,6 @@
         }
       });
 
-
-
-
       if (window.location.pathname == '/newbudget.html') {
         newBudgetButton.onclick = function () {
           var uid = firebase.auth().currentUser.uid;
@@ -89,7 +86,6 @@
           console.log(budget)
         }
       }
-
 
       if (submitProfile != null) {
         submitProfile.onclick = function () {
@@ -130,7 +126,6 @@
           return firebase.database().ref().update(updates);
         }
       }
-
 
       if (resetPasswordButton != null) {
 
@@ -195,6 +190,12 @@
         }
       }
 
+      $("#phoneField").on("change keyup paste click", function(){
+        console.log("Change")
+        var current = $("#phoneField").val().substring(2).replace(/[\D]/g,'');
+        $("#phoneField").val("+1" + current)
+    })
+
       if (newAccountButton != null) {
         console.log("Here");
         newAccountButton.onclick = function () {
@@ -204,7 +205,7 @@
 
               var userObject = {
                 uid: uid,
-                phone: phone.value,
+                phone: phone.value.replace(/\s/g, '').replace(/-/g,"").replace(/\//g,"").replace(/\(/g,"").replace(/\)/g,""),
                 name: nameInput.value
               }
               var updates = {};
