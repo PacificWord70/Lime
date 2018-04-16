@@ -1,0 +1,7 @@
+# Rule 1
+User-agent: Googlebot
+User-agent: AdsBot-Google
+Allow: /
+
+
+Sitemap: https://lime-4e46e.firebaseapp.com/sitemap.xml
