@@ -230,6 +230,7 @@
                 success: function(result) {
               //Write your code here
                   console.log(success);
+                  window.location = "home.html";
                 }
       });  
               window.location = "home.html";
