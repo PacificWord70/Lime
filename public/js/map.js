@@ -1,14 +1,14 @@
 var heatmapData = [
   
 ];
-// // var myVar = setTimeout(myTimer, 1000);
+ var myVar = setTimeout(myTimer, 1000);
 
-// function myTimer() {
-//   var heatmap = new google.maps.visualization.HeatmapLayer({
-//     data: heatmapData
-//   });
-//   heatmap.setMap(map);
-// }
+function myTimer() {
+  var heatmap = new google.maps.visualization.HeatmapLayer({
+    data: heatmapData
+  });
+  heatmap.setMap(map);
+}
 
 
 firebase.auth().onAuthStateChanged(function (user) {
