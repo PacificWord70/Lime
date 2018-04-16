@@ -37,10 +37,28 @@ newExpenseButton.onclick = function () {
             return firebase.database().ref().update(updates);
         }, function (error) {
             console.error(error);
+        }).then(() => {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-bottom-center",
+                "preventDuplicates": false,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
+              toastr.success("Submitted");
+              moneyamt.value = '';
+              streetaddr.value = '';
         });
-
     }
-
 }
 
 $(document).ready(function () {
