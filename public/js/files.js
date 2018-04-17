@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         console.log("Values", values);
         var str = "";
         for (bug of values) {
-            str = str + "<hr><h4>" + bug.name + "</h4>"
+            str = str + "<hr><h4>" + bug.name +" "+ "<img style=\"width:3%;\" src=\"../img/share.png\">"+ "</h4>"
             str = str + "<table class=\"table table-bordered\"><thead>" +
                 "<tr>" +
                 "<th>Categories</th>" +
