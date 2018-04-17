@@ -52,6 +52,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             budgetSummary.innerHTML = str;
             var share = document.getElementById('share');
             share.onclick = function() {
+                console.log(this);
                 toastr.options = {
                     "closeButton": true,
                     "debug": false,
@@ -73,7 +74,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                   console.log($('#share').attr('name'))
                 //   toastr.success("");
 
-                  toastr.info("budgetlime.us/share.html?budget=" + $('#share').attr('name'), "Share Link")
+                  toastr.info("budgetlime.us/share.html?budget=" + this.name, "Share Link")
 
 
             }

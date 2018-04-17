@@ -28,7 +28,7 @@ jQuery.ajax({
       
     },
     complete: function(data) {
-        // window.location = "home.html";
+        window.location = "home.html";
     }
   });
 

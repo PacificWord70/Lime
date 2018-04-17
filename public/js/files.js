@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         console.log("Values", values);
         var str = "";
         for (bug of values) {
-            str = str + "<hr><h4>" + bug.name +" "+ "<img style=\"width:3%;\" src=\"../img/share.png\">"+ "</h4>"
+            str = str + "<hr><h4>" + bug.name +" "+ "<img id=\"share\" name=\"" +  bug.BID + "\"style=\"width:3%;\" src=\"../img/share.png\">"+ "</h4>"
             str = str + "<table class=\"table table-bordered\"><thead>" +
                 "<tr>" +
                 "<th>Categories</th>" +
@@ -64,5 +64,32 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         }
         allexpenses.innerHTML = str
+        var share = document.getElementById('share');
+            share.onclick = function() {
+                console.log(this);
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "1000",
+                    "hideDuration": "1000",
+                    "timeOut": 0,
+                    "extendedTimeOut": 0,
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut",
+                    "tapToDismiss": false
+                  }
+                  console.log($('#share').attr('name'))
+                //   toastr.success("");
+
+                  toastr.info("budgetlime.us/share.html?budget=" + this.name, "Share Link")
+
+                }
     });
 });
