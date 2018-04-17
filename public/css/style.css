@@ -16,3 +16,8 @@ body{
 .summarytable {
     widows: 90%;
 }
+
+#loading {
+    width: 200px !important;
+    height: 25px !important;
+}
