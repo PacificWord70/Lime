@@ -8,3 +8,11 @@ body{
     padding: 0rem !important;
     overflow-x: hidden !important;
 }
+
+#logintext {
+    width: 90%;
+}
+
+.summarytable {
+    widows: 90%;
+}

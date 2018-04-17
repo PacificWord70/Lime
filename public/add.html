@@ -77,10 +77,10 @@
                                             <input class="form-control" id="locatestore" placeholder="Whole Foods">
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleDropdownFormPassword1">City and State</label>
-                                            <input class="form-control" id="locatecity" placeholder="San Jose, CA">
+                                            <label for="exampleDropdownFormPassword1">City and State or Zip Code</label>
+                                            <input class="form-control" id="locatecity" placeholder="[San Jose, CA] or [near 95070]">
                                         </div>
-                                        <div>
+                                        <div class="container" id="map" style="padding:0px;margin:0px;">
                                             <iframe id="searchmap" width="95%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDVhxoHJdopRN5GM260r2aYESsKk6ZEpYM&q=whole+foods,San+jose,CA"
                                                 allowfullscreen>
                                             </iframe>
@@ -111,6 +111,12 @@
             s = s.replace(" ", "+");
             document.getElementById("searchmap").src =
                 "https://www.google.com/maps/embed/v1/search?key=AIzaSyDVhxoHJdopRN5GM260r2aYESsKk6ZEpYM&q=" + s;
+        }
+        document.getElementsByClassName("default-card").onclick = function () {
+            console.log("hello");
+            var latitude = event.latLng.lat();
+            var longitude = event.latLng.lng();
+            console.log( latitude + ', ' + longitude );
         }
     </script>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
