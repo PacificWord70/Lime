@@ -25,7 +25,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             var str = ''
             for (var bug of values) {
                 // TODO: Add MDBootstrap classes
-                str = str + "<hr><h4>" + bug.name +" "+ "<img style=\"width:6%;\" src=\"img/share.png\"></h4>"
+                str = str + "<hr><h4>" + bug.name +" "+ "<img id=\"share\" name=\"" +  bug.BID + "\"style=\"width:6%;\" src=\"img/share.png\"></h4>"
                 str = str + ""
                 str = str + "<table class=\"table table-bordered\"><thead>" +
                     "<tr>" +
@@ -50,6 +50,33 @@ firebase.auth().onAuthStateChanged(function (user) {
 
             console.log(str);
             budgetSummary.innerHTML = str;
+            var share = document.getElementById('share');
+            share.onclick = function() {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "1000",
+                    "hideDuration": "1000",
+                    "timeOut": 0,
+                    "extendedTimeOut": 0,
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut",
+                    "tapToDismiss": false
+                  }
+                  console.log($('#share').attr('name'))
+                //   toastr.success("");
+
+                  toastr.info("budgetlime.us/share.html?budget=" + $('#share').attr('name'), "Share Link")
+
+
+            }
         });
     }
 });
