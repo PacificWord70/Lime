@@ -8,4 +8,6 @@ Andrew Rothwell : arothwel@purdue.edu
 Technologies:
 MDBootstrap
 Firebase
-Google Maps
+Google Maps API
+Twilio API
+Toastrjs
