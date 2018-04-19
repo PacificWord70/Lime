@@ -28,9 +28,11 @@
 </head>
 
 <body>
+    <div id="loadHeaderDiv">
 
+    </div>
     <!-- Start your project here-->
-    <nav class="navbar sticky-top scrolling-navbar navbar-expand-lg navbar-dark rgba-black-strong no-gutters">
+    <!-- <nav class="navbar sticky-top scrolling-navbar navbar-expand-lg navbar-dark rgba-black-strong no-gutters">
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="./img/profile.svg" style="width:30px;height:30px;">
@@ -66,7 +68,7 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <div class="container">
         <br />
@@ -93,6 +95,12 @@
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <!-- MDB core JavaScript -->
+
+        <script>
+            $(document).ready(function() {
+              $('#loadHeaderDiv').load("header.html");
+            });
+        </script>
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
