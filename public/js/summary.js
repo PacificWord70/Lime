@@ -74,7 +74,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                   console.log($('#share').attr('name'))
                 //   toastr.success("");
 
-                  toastr.info("budgetlime.us/share.html?budget=" + this.name, "Share Link")
+                  toastr.info("https://lime-4e46e.firebaseapp.com/share.html?budget=" + this.name, "Share Link")
 
 
             }
