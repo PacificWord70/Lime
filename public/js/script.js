@@ -33,8 +33,9 @@
       var newBudgetName = document.getElementById('newBudgetName');
       var newCategories = document.getElementById('newCategories');
       var newLimit = document.getElementById('newLimit');
-      var newBudgetButton = document.getElementById('newBudgetButton');
-      var addCategoryButton = document.getElementById('addCategoryButton');
+
+
+
 
       var budgetSummary = document.getElementById('budgetSummary');
       var budget = {
@@ -64,31 +65,45 @@
       });
 
       if (window.location.pathname == '/newbudget.html') {
-        newBudgetButton.onclick = function () {
-          var uid = firebase.auth().currentUser.uid;
-          budget.name = newBudgetName.value
-          console.log(budget)
-          var budgetID = firebase.database().ref().child('Budgets').push().key;
-          var updates = {};
-          budget.BID = budgetID;
-          updates['/Budgets/' + budgetID] = budget;
-          firebase.database().ref().update(updates);
-          console.log(uid);
-          updates['/UserInfo/' + uid + '/UserBudgets/' + budgetID] = budgetID;
-          return firebase.database().ref().update(updates).then(() => {
-            window.location = '/home.html'
-          });
-        }
-        addCategoryButton.onclick = function () {
-          var str = newCategories.value;
-          budget.categories[str] = {
-            total: newLimit.value,
-            spent: 0
+        $(document).ready(function () {
+            var newBudgetButton = document.getElementById('newBudgetButton');
+            console.log(newBudgetButton)
+            newBudgetButton.onclick = function () {
+            budget.name = newBudgetName.value
+            console.log(budget)
+            $('#dialog1').addClass('animated fadeOutLeft');
+            $('#dialog2').removeClass('invisible').addClass("animated fadeInRight");
+
           }
-          newCategories.value = ""
-          newLimit.value = ""
-          console.log(budget)
-        }
+          })
+          var submitBudget = document.getElementById('submitBudget');
+          var addCategoryButton = document.getElementById('addCategoryButton');
+
+          submitBudget.onclick = function () {
+            var uid = firebase.auth().currentUser.uid;
+            var budgetID = firebase.database().ref().child('Budgets').push().key;
+            var updates = {};
+            budget.BID = budgetID;
+            updates['/Budgets/' + budgetID] = budget;
+            firebase.database().ref().update(updates);
+            console.log(uid);
+            updates['/UserInfo/' + uid + '/UserBudgets/' + budgetID] = budgetID;
+            return firebase.database().ref().update(updates).then(() => {
+              window.location = '/home.html'
+            });
+          }
+          
+          addCategoryButton.onclick = function () {
+            var str = newCategories.value;
+            budget.categories[str] = {
+              total: newLimit.value,
+              spent: 0
+            }
+            newCategories.value = ""
+            newLimit.value = ""
+            console.log(budget)
+          }
+
       }
 
       if (submitProfile != null) {
@@ -236,10 +251,10 @@
                 },
                 success: function (result) {
                   //Write your code here
-                  console.log("Success",success);
-                  
+                  console.log("Success", success);
+
                 },
-                complete: function(data) {
+                complete: function (data) {
                   window.location = "home.html";
                 }
               });

@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
@@ -26,9 +30,11 @@
 </head>
 
 <body>
+    <div id="loadHeaderDiv">
 
+    </div>
     <!-- Start your project here-->
-    <nav class="navbar sticky-top scrolling-navbar navbar-expand-lg navbar-dark rgba-black-strong no-gutters">
+    <!-- <nav class="navbar sticky-top scrolling-navbar navbar-expand-lg navbar-dark rgba-black-strong no-gutters">
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="./img/profile.svg" style="width:30px;height:30px;">
@@ -64,14 +70,30 @@
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav> -->
 
     <div class="container">
         <br />
         <div class="row justify-content-center">
-            <div class="col-md-5 col-sm-12">
-                <div class="card">
+            <div class="col-md-6 col-sm-12 visible animated fadeInLeft">
+                <div id="dialog1" class="card">
                     <div class="card-body">
+                        <h1 class="card-title">Budgets</h1>
+                        <!-- <select class="js-example-basic-single" name="budget" id="budgetSelect" style="width: 100%">
+                        </select> -->
+                        <div class="md-form">
+                            <input type="text" id="newBudgetName" class="form-control">
+                            <label for="newBudgetName">New Budget Name</label>
+                        </div>
+                        <button class="btn btn-primary" id="newBudgetButton">Next</button>
+                        <a href="files.html" class="btn btn-blue-grey">Back to Expense Report</a>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div id="dialog2" class="card invisible">
+                    <div id="budgetContent"class="card-body">
                         <h1 class="card-title">Categories</h1>
                         <p>Please add all categories before submiting the overarching budget</p>
                         <div class="md-form">
@@ -83,25 +105,11 @@
                             <label for="newLimit">Category $$ Limit</label>
                         </div>
                         <button class="btn btn-success" id="addCategoryButton">Add Category</button>
+                        <button class="btn btn-primary" id="submitBudget">Submit</button>
                     </div>
                 </div>
                 <br />
             </div>
-            <div class="col-md-5 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-title">Budgets</h1>
-                            <!-- <select class="js-example-basic-single" name="budget" id="budgetSelect" style="width: 100%">
-                            </select> -->
-                            <div class="md-form">
-                                <input type="text" id="newBudgetName" class="form-control">
-                                <label for="newBudgetName">New Budget Name</label>
-                            </div>
-                            <button class="btn btn-primary" id="newBudgetButton">Submit</button>
-                            <a href="files.html" class="btn btn-blue-grey">Back to Expense Report</a>
-                        </div>
-                    </div>
-                </div>
         </div>
     </div>
 
@@ -116,12 +124,16 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
+    <script>
+        $(document).ready(function() {
+          $('#loadHeaderDiv').load("header.html");
+        //   $('#dialog').load("budgetDialog.html");
+        });
+    </script>
 
     <script type="text/javascript" src="js/script.js"></script>
 
     <script type="text/javascript" src="js/mdb.min.js"></script>
-
-    <script type="text/javascript" src="js/heatmap.js"></script>
 
 </body>
 
