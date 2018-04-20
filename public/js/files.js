@@ -23,6 +23,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     }).then(function (values) {
         console.log("Values", values);
         var str = "";
+        var dt = new Date();
         for (bug of values) {
             str = str + "<hr><h4>" + bug.name +" "+ "<img id=\"share\" name=\"" +  bug.BID + "\"style=\"width:3%;\" src=\"../img/share.png\">"+ "</h4>"
             str = str + "<table class=\"table table-bordered\"><thead>" +
@@ -32,31 +33,35 @@ firebase.auth().onAuthStateChanged(function (user) {
                 "<th>Location</th>" +
                 "<th>Date</th>" +
                 "</tr></thead>"
-            for (exp in bug.Expenses) {
+            // console.log(bug)
+            console.log("Bug", bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()])
+            for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
                 console.log("Expense ID", exp);
-                console.log(bug.Expenses[exp].categories)
-                console.log(bug.Expenses[exp].moneyamt);
-                console.log(bug.Expenses[exp].streetaddr);
-                console.log(bug.Expenses[exp].date);
+                console.log(bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp])
+                console.log(bug.Expenses);
+                console.log(bug.Expenses);
+                console.log(bug.Expenses);
             }
-            for (exp in bug.Expenses) {
+            for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
+                console.log()
                 str = str +
                     "<tbody><tr>" +
                     "<td>";
-                    for (cat of bug.Expenses[exp].categories) {
-                        console.log(cat)
+                    console.log()
+                    for (cat of bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].categories) {
+                        // console.log(cat)
                         str = str + cat + " "
                     } 
                     str = str + "</td>" +
-                    "<td>$" + bug.Expenses[exp].moneyamt + "</td>" +
-                    "<td>" + bug.Expenses[exp].streetaddr + "</td>" +
-                    "<td>" + bug.Expenses[exp].date + "</td>" +
+                    "<td>$" + bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].moneyamt + "</td>" +
+                    "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].streetaddr + "</td>" +
+                    "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].date + "</td>" +
                     "</tr></tbody>"
-                console.log(cat)
-                console.log(bug.categories[cat])
+                // console.log(cat)
+                // console.log(bug.categories[cat])
             }
-            console.log(bug.categories)
-            console.log(bug.name)
+            // console.log(bug.categories)
+            // console.log(bug.name)
             str = str + "</table>"
 
             console.log(bug.name);

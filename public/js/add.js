@@ -22,7 +22,7 @@ newExpenseButton.onclick = function () {
         categories: rv,
         date: dt.toUTCString()
     }
-    var expenseID = firebase.database().ref().child('/Budgets/' + foo.val() + '/Expenses/').push().key;
+    var expenseID = firebase.database().ref().child('/Budgets/' + foo.val() + '/Expenses/' + dt.getFullYear() + '/' + dt.getMonth() + '/' + dt.getDate()).push().key;
     var updates = {};
 
     for (let cat in rv) {
@@ -33,7 +33,7 @@ newExpenseButton.onclick = function () {
             console.log("New Value", parseInt(snap.val()) + parseInt(moneyamt.value));
 
             updates['/Budgets/' + foo.val() + '/categories/' + rv[cat] + '/spent'] = parseInt(snap.val()) + parseInt(moneyamt.value);
-            updates['/Budgets/' + foo.val() + '/Expenses/' + expenseID] = expense;
+            updates['/Budgets/' + foo.val() + '/Expenses/' + dt.getFullYear() + '/' + dt.getMonth() + '/' + dt.getDate() + '/' + expenseID] = expense;
             return firebase.database().ref().update(updates);
         }, function (error) {
             console.error(error);
