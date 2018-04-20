@@ -34,6 +34,9 @@ firebase.auth().onAuthStateChanged(function (user) {
                 "<th>Date</th>" +
                 "</tr></thead>"
             // console.log(bug)
+            if(bug.Expenses == null || bug.Expenses[dt.getFullYear()] == null) {
+                return
+            }
             console.log("Bug", bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()])
             for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
                 console.log("Expense ID", exp);
