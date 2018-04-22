@@ -209,6 +209,16 @@
         }
       }
 
+      function copyFunction() {
+        /* Get the text field */
+        var copyText = document.getElementById("shareLink");
+        /* Select the text field */
+        copyText.select();
+        /* Copy the text inside the text field */
+        document.execCommand("Copy");
+      }
+
+
       $("#phoneField").on("change keyup paste click", function () {
         console.log("Change")
         var current = $("#phoneField").val().substring(2).replace(/[\D]/g, '');

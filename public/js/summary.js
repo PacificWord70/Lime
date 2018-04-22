@@ -74,7 +74,9 @@ firebase.auth().onAuthStateChanged(function (user) {
                   console.log($('#share').attr('name'))
                 //   toastr.success("");
 
-                  toastr.info("https://lime-4e46e.firebaseapp.com/share.html?budget=" + this.name, "Share Link")
+                  toastr.info("<input id=\"shareLink\" value=\"https://lime-4e46e.firebaseapp.com/share.html?budget=" + this.name + "\" readonly>" + 
+                  "</input><br><button class=\"btn btn-danger\"onclick=\"copyFunction()\">Copy to Clipboard</button>"
+                  , "Share Link")
 
 
             }
