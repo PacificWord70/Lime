@@ -25,9 +25,12 @@ firebase.auth().onAuthStateChanged(function (user) {
         var str = "";
         var dt = new Date();
         for (bug of values) {
-            str = str + "<hr><h4>" + bug.name +" "+ "<img id=\"share\" name=\"" +  bug.BID + "\"style=\"width:1em;\" src=\"../img/share.png\"><a href=\"message.html?BID=" + bug.BID + "\"><i class=\"fa fa-comments\" aria-hidden=\"true\"></i></a>"+ "</h4>"
+            str = str + "<hr><h4>" + bug.name +" "+ "<a id=\"share\"name=\"" +  bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>"+
+            "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>"+ 
+            "<button type=\"button\" class=\"btn btn-sm btn-outline-warning waves-effect\">Remove</button>" +
+            "</h4>"
             str = str + "<table class=\"table table-bordered\"><thead>" +
-                "<tr>" +
+                "<tr>" + "<th>Remove</th>" +
                 "<th>Categories</th>" +
                 "<th>Amount spent</th>" +
                 "<th>Location</th>" +
@@ -48,8 +51,8 @@ firebase.auth().onAuthStateChanged(function (user) {
             for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
                 console.log()
                 str = str +
-                    "<tbody><tr>" +
-                    "<td>";
+                    "<tbody><tr>" + "<td><img src=\"../img/removeB.png\" style=\"width:3em;\"" +
+                    "</td><td>";
                     console.log()
                     for (cat of bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].categories) {
                         // console.log(cat)
