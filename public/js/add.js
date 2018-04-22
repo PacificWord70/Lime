@@ -32,8 +32,10 @@ newExpenseButton.onclick = function () {
             console.log("Current Value", parseInt(snap.val()));
             console.log("New Value", parseInt(snap.val()) + parseInt(moneyamt.value));
 
-            updates['/Budgets/' + foo.val() + '/categories/' + rv[cat] + '/spent'] = parseInt(snap.val()) + parseInt(moneyamt.value);
+            updates['/Budgets/' + foo.val() + '/Expenses/' + dt.getFullYear() + '/' + dt.getMonth() + '/' +'/categories/' + rv[cat] + '/spent'] = parseInt(snap.val()) + parseInt(moneyamt.value);
+            // updates['/Budgets/' + foo.val() + '/categories/' + rv[cat] + '/spent'] = parseInt(snap.val()) + parseInt(moneyamt.value);
             updates['/Budgets/' + foo.val() + '/Expenses/' + dt.getFullYear() + '/' + dt.getMonth() + '/' + dt.getDate() + '/' + expenseID] = expense;
+
             return firebase.database().ref().update(updates);
         }, function (error) {
             console.error(error);
@@ -143,3 +145,8 @@ firebase.auth().onAuthStateChanged(function (user) {
         catogoriesSelect.innerHTML = str1;
     });
 });
+
+function simulateData() {
+    moneyamt.value = 12;
+    streetaddr.value = "305 N University St, West Lafayette, IN 47907";
+}

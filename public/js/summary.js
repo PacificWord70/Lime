@@ -24,7 +24,6 @@ firebase.auth().onAuthStateChanged(function (user) {
             console.log(values);
             var str = ''
             for (var bug of values) {
-                // TODO: Add MDBootstrap classes
                 str = str + "<hr><h4>" + bug.name +" "+ "<div><a id=\"share\"name=\"" +  bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>"+
                 "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>"+ 
                 "</div></h4>"
@@ -34,11 +33,26 @@ firebase.auth().onAuthStateChanged(function (user) {
                     "<th>Left</th>" +
                     "<th>Total</th>" +
                     "</tr></thead>"
+                var dt = new Date();
+                var year = String(dt.getFullYear());
+                var month = String(dt.getMonth());
+                console.log("Budget",bug.Expenses[year][month])
+                
+                // console.log(bug.Expenses[dt.getFullYear()][dt.getMonth()][cat])
+                
                 for (var cat in bug.categories) {
+                    console.log("Cat", cat)
+                    var spent;
+                    if(bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat] == undefined){
+                        spent = 0
+                    }else {
+                        spent = bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat].spent
+                    }
+                    // console.log("Spent",bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat].spent)
                     str = str +
                         "<tbody><tr>" +
                         "<td>" + cat + "</td>" +
-                        "<td>$" + (bug.categories[cat].total - bug.categories[cat].spent) + "</td>" +
+                        "<td>$" + (bug.categories[cat].total - spent) + "</td>" +
                         "<td>$" + bug.categories[cat].total + "</td>" +
                         "</tr></tbody>"
                     console.log(cat)
