@@ -25,9 +25,9 @@ firebase.auth().onAuthStateChanged(function (user) {
             var str = ''
             for (var bug of values) {
                 // TODO: Add MDBootstrap classes
-                str = str + "<hr><h4>" + bug.name +" "+ "<div><a id=\"share\"name=\"" +  bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>"+
+                str = str + "<hr><h4>" + bug.name +" "+ "<a id=\"share\"name=\"" +  bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>"+
                 "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>"+ 
-                "</div></h4>"
+                "</h4>"
                 str = str + "<table class=\"table table-bordered\"><thead>" +
                     "<tr>" +
                     "<th>Category</th>" +
