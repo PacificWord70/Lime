@@ -35,7 +35,9 @@
       var newLimit = document.getElementById('newLimit');
 
 
-
+        $(document).ready(function() {
+          $('#loadHeaderDiv').load("header.html");
+        });
 
       var budgetSummary = document.getElementById('budgetSummary');
       var budget = {
