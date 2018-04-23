@@ -38,44 +38,44 @@ firebase.auth().onAuthStateChanged(function (user) {
                 "</tr></thead>"
             // console.log(bug)
             if (bug.Expenses == null || bug.Expenses[dt.getFullYear()] == null) {
-                return
-            }
-            console.log("Bug", bug.Expenses)
-            console.log("Bug", bug.Expenses[dt.getFullYear()])
-            console.log(dt.getMonth())
-            console.log("Bug", bug.Expenses[dt.getFullYear()][dt.getMonth()][22])
-            for (d in bug.Expenses[dt.getFullYear()][dt.getMonth()]) {
-                
-                console.log("Date",bug.Expenses[dt.getFullYear()][dt.getMonth()][d])
-                for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][d]) {
-                    if(d == "categories"){
-                        break;
-                    }
-                    str = str +
-                        "<tbody><tr>" + "<td><img src=\"../img/removeE.png\" style=\"width:3em;\"" +
-                        "</td><td>";
-                    console.log("Exp",bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp])
+                str = str + "</table>"
+            } else {
+                console.log("Bug", bug.Expenses)
+                console.log("Bug", bug.Expenses[dt.getFullYear()])
+                console.log(dt.getMonth())
+                console.log("Bug", bug.Expenses[dt.getFullYear()][dt.getMonth()][22])
+                for (d in bug.Expenses[dt.getFullYear()][dt.getMonth()]) {
 
-                    for (cat of bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].categories) {
+                    console.log("Date", bug.Expenses[dt.getFullYear()][dt.getMonth()][d])
+                    for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][d]) {
+                        if (d == "categories") {
+                            break;
+                        }
+                        str = str +
+                            "<tbody><tr>" + "<td><img src=\"../img/removeE.png\" style=\"width:3em;\"" +
+                            "</td><td>";
+                        console.log("Exp", bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp])
+
+                        for (cat of bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].categories) {
+                            // console.log(cat)
+                            str = str + cat + " "
+                        }
+                        str = str + "</td>" +
+                            "<td>$" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].moneyamt + "</td>" +
+                            "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].streetaddr + "</td>" +
+                            "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].date + "</td>" +
+                            "</tr></tbody>"
                         // console.log(cat)
-                        str = str + cat + " "
+                        // console.log(bug.categories[cat])
                     }
-                    str = str + "</td>" +
-                        "<td>$" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].moneyamt + "</td>" +
-                        "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].streetaddr + "</td>" +
-                        "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].date + "</td>" +
-                        "</tr></tbody>"
-                    // console.log(cat)
-                    // console.log(bug.categories[cat])
                 }
+                // console.log(bug.categories)
+                // console.log(bug.name)
+                str = str + "</table>"
+
+                console.log(bug.name);
+                // console.log(bug.Expenses)
             }
-            // console.log(bug.categories)
-            // console.log(bug.name)
-            str = str + "</table>"
-
-            console.log(bug.name);
-            // console.log(bug.Expenses)
-
         }
         allexpenses.innerHTML = str
         var share = document.getElementById('share');
