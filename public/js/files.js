@@ -51,7 +51,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
                 console.log()
                 str = str +
-                    "<tbody><tr>" + "<td><img src=\"../img/removeB.png\" style=\"width:3em;\"" +
+                    "<tbody><tr>" + "<td><img src=\"../img/removeE.png\" style=\"width:3em;\"" +
                     "</td><td>";
                     console.log()
                     for (cat of bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].categories) {
