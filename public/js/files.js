@@ -40,21 +40,6 @@ firebase.auth().onAuthStateChanged(function (user) {
             if (bug.Expenses == null || bug.Expenses[dt.getFullYear()] == null) {
                 return
             }
-            console.log("Bug", bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()])
-            for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
-                console.log("Expense ID", exp);
-                console.log(bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp])
-                console.log(bug.Expenses);
-                console.log(bug.Expenses);
-                console.log(bug.Expenses);
-            }
-            for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
-                console.log()
-                str = str +
-                    "<tbody><tr>" + "<td><img src=\"../img/removeE.png\" style=\"width:3em;\"" +
-                    "</td><td>";
-                    console.log()
-                    for (cat of bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].categories) {
             console.log("Bug", bug.Expenses)
             console.log("Bug", bug.Expenses[dt.getFullYear()])
             console.log(dt.getMonth())
@@ -67,7 +52,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                         break;
                     }
                     str = str +
-                        "<tbody><tr>" + "<td><img src=\"../img/removeB.png\" style=\"width:3em;\"" +
+                        "<tbody><tr>" + "<td><img src=\"../img/removeE.png\" style=\"width:3em;\"" +
                         "</td><td>";
                     console.log("Exp",bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp])
 
