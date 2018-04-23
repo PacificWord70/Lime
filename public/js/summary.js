@@ -34,11 +34,26 @@ firebase.auth().onAuthStateChanged(function (user) {
                     "<th>Left</th>" +
                     "<th>Total</th>" +
                     "</tr></thead>"
+                var dt = new Date();
+                var year = String(dt.getFullYear());
+                var month = String(dt.getMonth());
+                console.log("Budget",bug.Expenses[year][month])
+                
+                // console.log(bug.Expenses[dt.getFullYear()][dt.getMonth()][cat])
+                
                 for (var cat in bug.categories) {
+                    console.log("Cat", cat)
+                    var spent;
+                    if(bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat] == undefined){
+                        spent = 0
+                    }else {
+                        spent = bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat].spent
+                    }
+                    // console.log("Spent",bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat].spent)
                     str = str +
                         "<tbody><tr>" +
                         "<td>" + cat + "</td>" +
-                        "<td>$" + (bug.categories[cat].total - bug.categories[cat].spent) + "</td>" +
+                        "<td>$" + (bug.categories[cat].total - spent) + "</td>" +
                         "<td>$" + bug.categories[cat].total + "</td>" +
                         "</tr></tbody>"
                     console.log(cat)
