@@ -25,10 +25,10 @@ firebase.auth().onAuthStateChanged(function (user) {
         var str = "";
         var dt = new Date();
         for (bug of values) {
-            str = str + "<hr><h4>" + bug.name +" "+ "<a id=\"share\"name=\"" +  bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>"+
-            "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>"+ 
-            "<button type=\"button\" class=\"btn btn-sm btn-outline-warning waves-effect\">Remove</button>" +
-            "</h4>"
+            str = str + "<hr><h4>" + bug.name + " " + "<a id=\"share\"name=\"" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>" +
+                "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>" +
+                "<button type=\"button\" class=\"btn btn-sm btn-outline-warning waves-effect\">Remove</button>" +
+                "</h4>"
             str = str + "<table class=\"table table-bordered\"><thead>" +
                 "<tr>" + "<th>Remove</th>" +
                 "<th>Categories</th>" +
@@ -37,34 +37,37 @@ firebase.auth().onAuthStateChanged(function (user) {
                 "<th>Date</th>" +
                 "</tr></thead>"
             // console.log(bug)
-            if(bug.Expenses == null || bug.Expenses[dt.getFullYear()] == null) {
+            if (bug.Expenses == null || bug.Expenses[dt.getFullYear()] == null) {
                 return
             }
-            console.log("Bug", bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()])
-            for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
-                console.log("Expense ID", exp);
-                console.log(bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp])
-                console.log(bug.Expenses);
-                console.log(bug.Expenses);
-                console.log(bug.Expenses);
-            }
-            for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()]) {
-                console.log()
-                str = str +
-                    "<tbody><tr>" + "<td><img src=\"../img/removeB.png\" style=\"width:3em;\"" +
-                    "</td><td>";
-                    console.log()
-                    for (cat of bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].categories) {
+            console.log("Bug", bug.Expenses)
+            console.log("Bug", bug.Expenses[dt.getFullYear()])
+            console.log(dt.getMonth())
+            console.log("Bug", bug.Expenses[dt.getFullYear()][dt.getMonth()][22])
+            for (d in bug.Expenses[dt.getFullYear()][dt.getMonth()]) {
+                
+                console.log("Date",bug.Expenses[dt.getFullYear()][dt.getMonth()][d])
+                for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][d]) {
+                    if(d == "categories"){
+                        break;
+                    }
+                    str = str +
+                        "<tbody><tr>" + "<td><img src=\"../img/removeB.png\" style=\"width:3em;\"" +
+                        "</td><td>";
+                    console.log("Exp",bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp])
+
+                    for (cat of bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].categories) {
                         // console.log(cat)
                         str = str + cat + " "
-                    } 
+                    }
                     str = str + "</td>" +
-                    "<td>$" + bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].moneyamt + "</td>" +
-                    "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].streetaddr + "</td>" +
-                    "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][dt.getDate()][exp].date + "</td>" +
-                    "</tr></tbody>"
-                // console.log(cat)
-                // console.log(bug.categories[cat])
+                        "<td>$" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].moneyamt + "</td>" +
+                        "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].streetaddr + "</td>" +
+                        "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].date + "</td>" +
+                        "</tr></tbody>"
+                    // console.log(cat)
+                    // console.log(bug.categories[cat])
+                }
             }
             // console.log(bug.categories)
             // console.log(bug.name)
@@ -76,31 +79,30 @@ firebase.auth().onAuthStateChanged(function (user) {
         }
         allexpenses.innerHTML = str
         var share = document.getElementById('share');
-            share.onclick = function() {
-                console.log(this);
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-bottom-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "1000",
-                    "hideDuration": "1000",
-                    "timeOut": 0,
-                    "extendedTimeOut": 0,
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut",
-                    "tapToDismiss": false
-                  }
-                  console.log($('#share').attr('name'))
-                  toastr.info("<input id=\"shareLink\" value=\"https://lime-4e46e.firebaseapp.com/share.html?budget=" + this.name + "\" readonly>" + 
-                  "</input><br><button class=\"btn btn-danger\"onclick=\"copyFunction()\">Copy to Clipboard</button>"
-                  , "Share Link")
+        share.onclick = function () {
+            console.log(this);
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": 0,
+                "extendedTimeOut": 0,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+                "tapToDismiss": false
+            }
+            console.log($('#share').attr('name'))
+            toastr.info("<input id=\"shareLink\" value=\"https://lime-4e46e.firebaseapp.com/share.html?budget=" + this.name + "\" readonly>" +
+                "</input><br><button class=\"btn btn-danger\"onclick=\"copyFunction()\">Copy to Clipboard</button>", "Share Link")
 
-                }
+        }
     });
 });
