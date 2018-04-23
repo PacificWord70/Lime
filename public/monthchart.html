@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Lime Budgeting</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2186314991953520",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+
+<body>
+    <div id="loadHeaderDiv"></div>
+
+    <br />
+    <div class="container">
+        <br />
+        <div class="row justify-content-center">
+            <div class="col-sm-11">
+                <div class="animated fadeInBottom card z-depth-4">
+                    <div class="card-body">
+                        <h1 class="card-title">Budgets Remaining this Month</h2>
+                        <div class="card-text" id="mbudgets">
+                            <canvas id="budgets" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6">
+                <div class="animated fadeInBottom card z-depth-4">
+                    <div class="card-body">
+                        <h1 class="card-title">Money by City</h2>
+                        <div class="card-text" id="mcity">
+                            <canvas id="city" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <div class="col-sm-6">
+                <div class="animated fadeInBottom card z-depth-4">
+                    <div class="card-body">
+                        <h1 class="card-title">Money by Zip</h2>
+                        <div class="card-text" id="mzip">
+                            <canvas id="zip" width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <!-- /Start your project here-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script>
+        $(document).ready(function() {
+          $('#loadHeaderDiv').load("header.html");
+        });
+    </script>
+
+    <script>
+        var ctxx = document.getElementById("city").getContext('2d');
+        var myDoughnutChart = new Chart(ctxx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [10, 20, 30],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'Indianapolis',
+                    'Chicago',
+                    'West Lafayette'
+                ]
+            },
+            options:  {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+        var ctxx = document.getElementById("zip").getContext('2d');
+        var mypolar = new Chart(ctxx, {
+            type: 'polarArea',
+            data: {
+                datasets: [{
+                    data: [10, 20, 30],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    '95070',
+                    '47906',
+                    '53402'
+                ]
+            },
+            options:  {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+        var ctx = document.getElementById("budgets").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                //labels should be the name of each of their budgets
+                labels: ["Budget1", "Budget2", "Budget3", "budget4", "Budget5", "budget6"],
+                datasets: [{
+                    
+                    //data should be how much left in budgets
+                    data: [12, -19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+
+</body>
+
+</html>

@@ -25,14 +25,17 @@ firebase.auth().onAuthStateChanged(function (user) {
             var str = ''
             for (var bug of values) {
                 // TODO: Add MDBootstrap classes
-                str = str + "<hr><h4>" + bug.name + " " + "<a id=\"share\"name=\"" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>" +
-                    "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>" +
+                str = str + "<hr><h4>" + 
+                        bug.name + " " + 
+                        "<a id=\"share\"name=\"" + bug.BID +
+                         "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>" +
+                        "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>" +
                     "</h4>"
-                str = str + "<table class=\"table table-bordered\"><thead>" +
-                    "<tr>" +
-                    "<th>Category</th>" +
-                    "<th>Left</th>" +
-                    "<th>Total</th>" +
+                str = str + "<table style=\"width:90%;\" class=\"table table-bordered\"><thead>" +
+                        "<tr>" +
+                        "<th>Category</th>" +
+                        "<th>Left</th>" +
+                        "<th>Total</th>" +
                     "</tr></thead>"
                 var dt = new Date();
                 var year = String(dt.getFullYear());
