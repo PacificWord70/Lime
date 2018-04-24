@@ -24,6 +24,8 @@
         <meta name="msapplication-TileImage" content="icons.ico/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
     <title>Lime Budgeting</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -93,7 +95,30 @@
             <div class="col-md-8 col-sm-12">
                 <div class="animated fadeInBottom card">
                     <div class="card-body">
-                        <h1 class="card-title">All Expenses</h1>
+                        <p class="card-title">
+                            <h1>All Expenses</h1>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <select style="width:100%;" class="js-example-basic-single" name="state">
+                                        <option value="0">January</option>
+                                        <option value="1">February</option>
+                                        <option value="2">March</option>
+                                        <option value="3">April</option>
+                                        <option value="4">May</option>
+                                        <option value="5">June</option>
+                                        <option value="6">July</option>
+                                        <option value="7">August</option>
+                                        <option value="8">September</option>
+                                        <option value="9">October</option>
+                                        <option value="10">November</option>
+                                        <option value="11">December</option>
+                                    </select>
+                                </div>
+                                <div style="margin:0em;padding:0em;" class="col-sm-3">
+                                    <button style="border:0em;" class="btn btn-primary btn-sm">Submit</button>
+                                </div>
+                            </div>
+                        </p>
                         <div id="allexpenses">
                         </div>
                     </div>
@@ -126,6 +151,8 @@
         <script type="text/javascript" src="js/files.js"></script>
 
         <script type="text/javascript" src="js/mdb.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 </body>
 

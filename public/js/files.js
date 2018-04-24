@@ -1,5 +1,9 @@
 var allexpenses = document.getElementById('allexpenses');
 
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+
 firebase.auth().onAuthStateChanged(function (user) {
     // console.log(user.id);
     return firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
