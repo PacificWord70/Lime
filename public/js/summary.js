@@ -29,7 +29,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                          "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>" +
                         "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>" +
                     "</h4>"
-                str = str + "<table style=\"width:90%;\" class=\"table table-bordered\"><thead>" +
+                str = str + "<table width=\"90%\" style=\"width:90%;\" class=\"table table-bordered\"><thead>" +
                         "<tr>" +
                         "<th>Category</th>" +
                         "<th>Left</th>" +
