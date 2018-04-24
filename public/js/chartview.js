@@ -172,9 +172,10 @@ firebase.auth().onAuthStateChanged(function (user) {
             var data = [];
 
             if (bug.Expenses == null) {
-                colorCount++;
+                
                 console.log("COLORS", colors[colorCount % 12])
                 for (var cat in bug.categories) {
+                    colorCount++;
                     var label = [];
                     var dataNumber = [];
                     var dataValues = {
@@ -198,14 +199,14 @@ firebase.auth().onAuthStateChanged(function (user) {
                 console.log("BUG CATS", bug.categories)
                 for (var cat in bug.categories) {
                     colorCount++;
-                    console.log("COLORS", colors[colorCount % 12])
+                    console.log("COLORS", colors[colorCount % 6])
                     var label = [];
                     var dataNumber = [];
                     var dataValues = {
                         label: label,
                         data: dataNumber,
                         backgroundColor: [
-                            colors[colorCount % 12]
+                            colors[colorCount % 6]
                         ],
                         borderColor: [
                             'rgba(0,0,0,.2)'

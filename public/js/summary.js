@@ -6,21 +6,21 @@ firebase.auth().onAuthStateChanged(function (user) {
             var reads = [];
             snapshot.forEach(function (childSnapshot) {
                 var id = childSnapshot.key;
-                console.log(id);
+                // console.log(id);
                 var promise = firebase.database().ref('/Budgets/' + id).once('value').then(function (snap) {
                     return snap.val();
                     // The Promise was fulfilled.
                 }, function (error) {
                     console.error(error);
                 });
-                console.log(promise);
+                // console.log(promise);
                 reads.push(promise);
             });
             return Promise.all(reads);
         }, function (error) {
             console.error(error);
         }).then(function (values) {
-            console.log(values);
+            // console.log(values);
             var str = ''
             for (var bug of values) {
                 str = str + "<hr><h4>" + 
@@ -40,7 +40,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 var month = String(dt.getMonth());
                 if (bug.Expenses == null) {
                     for (var cat in bug.categories) {
-                        console.log("Cat", cat)
+                        // console.log("Cat", cat)
                         str = str +
                             "<tbody><tr>" +
                             "<td>" + cat + "</td>" +
@@ -50,12 +50,12 @@ firebase.auth().onAuthStateChanged(function (user) {
                     }
                     str = str + "</table>"
                 } else {
-                    console.log("Budget", bug.Expenses[year][month])
+                    // console.log("Budget", bug.Expenses[year][month])
 
                     // console.log(bug.Expenses[dt.getFullYear()][dt.getMonth()][cat])
-                    console.log("BUG CATS", bug.categories)
+                    // console.log("BUG CATS", bug.categories)
                     for (var cat in bug.categories) {
-                        console.log("Cat", cat)
+                        // console.log("Cat", cat)
                         var spent;
                         if (bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat] == undefined) {
                             spent = 0
@@ -68,11 +68,11 @@ firebase.auth().onAuthStateChanged(function (user) {
                             "<td>$" + (bug.categories[cat].total - spent) + "</td>" +
                             "<td>$" + bug.categories[cat].total + "</td>" +
                             "</tr></tbody>"
-                        console.log(cat)
-                        console.log(bug.categories[cat])
+                        // console.log(cat)
+                        // console.log(bug.categories[cat])
                     }
-                    console.log(bug.categories)
-                    console.log(bug.name)
+                    // console.log(bug.categories)
+                    // console.log(bug.name)
                     str = str + "</table>"
                 }
             }

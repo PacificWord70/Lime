@@ -1,5 +1,5 @@
 var heatmapData = [
-  
+
 ];
 var myVar = setTimeout(myTimer, 1000);
 
@@ -29,27 +29,39 @@ firebase.auth().onAuthStateChanged(function (user) {
       console.log(id);
       var promise = firebase.database().ref('/Budgets/' + id).once('value').then(function (snap) {
         return snap.val();
-        // The Promise was fulfilled.
       }, function (error) {
         console.error(error);
       });
-      console.log(promise);
+      // console.log(promise);
       reads.push(promise);
     });
     return Promise.all(reads);
   }, function (error) {
     console.error(error);
   }).then(function (values) {
-    console.log(values);
+    console.log("Values", values);
     var Pro = [];
+    var dt = new Date();
     for (bug of values) {
-      for (exp in bug.Expenses) {
-        Pro.push(geocodeAddress(geocoder, map, bug.Expenses[exp].streetaddr))
+      if (bug.Expenses != null) {
+        for (day in bug.Expenses[dt.getFullYear()][dt.getMonth()]) {
+          // console.log("Day", day)
+          if (day != "categories") {
+            for (exp in bug.Expenses[dt.getFullYear()][dt.getMonth()][day]) {
+              // console.log("EXP", exp)
+              var addr = bug.Expenses[dt.getFullYear()][dt.getMonth()][day][exp].streetaddr
+              console.log(addr)
+              if (addr != '' || addr != null) {
+                console.log(addr)
+                Pro.push(geocodeAddress(geocoder, map, addr))
+              }
+            }
+          }
+        }
       }
     }
     console.log(Pro)
     Promise.all(Pro).then(() => {
-
       console.log("HeatmapData", heatmapData)
       var heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
@@ -57,7 +69,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       heatmap.setMap(map);
       console.log(navigator.geolocation)
       if (navigator.geolocation) {
-        console.log("Nav")
+        // console.log("Nav")
         navigator.geolocation.getCurrentPosition(function (position) {
           var pos = {
             lat: position.coords.latitude,
@@ -65,7 +77,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           };
 
           map.setCenter(pos);
-          console.log(pos.lat, "Just pos");
+          // console.log(pos.lat, "Just pos");
         }, function () {});
       }
 
@@ -74,14 +86,15 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function geocodeAddress(geocoder, resultsMap, address) {
+  // console.log("Address", address)
   geocoder.geocode({
     'address': address
   }, function (results, status) {
     if (status === 'OK') {
-      console.log("New Heat point")
-      console.log(results[0].geometry.location)
-      console.log(results[0].geometry.location.lat())
-      console.log(results[0].geometry.location.lng())
+      // console.log("New Heat point")
+      // console.log(results[0].geometry.location)
+      // console.log(results[0].geometry.location.lat())
+      // console.log(results[0].geometry.location.lng())
       heatmapData.push(new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()));
       return new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
     } else {
@@ -89,5 +102,3 @@ function geocodeAddress(geocoder, resultsMap, address) {
     }
   });
 }
-
-
