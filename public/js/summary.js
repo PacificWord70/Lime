@@ -20,7 +20,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         }, function (error) {
             console.error(error);
         }).then(function (values) {
-            // console.log(values);
             var str = ''
             for (var bug of values) {
                 str = str + "<hr><h4>" + 
@@ -68,45 +67,11 @@ firebase.auth().onAuthStateChanged(function (user) {
                             "<td>$" + (bug.categories[cat].total - spent) + "</td>" +
                             "<td>$" + bug.categories[cat].total + "</td>" +
                             "</tr></tbody>"
-                        // console.log(cat)
-                        // console.log(bug.categories[cat])
                     }
-                    // console.log(bug.categories)
-                    // console.log(bug.name)
                     str = str + "</table>"
                 }
             }
-
-            // console.log(str);
             budgetSummary.innerHTML = str;
-            // var share = document.getElementById('share');
-            // share.onclick = function () {
-            //     console.log(this);
-            //     toastr.options = {
-            //         "closeButton": true,
-            //         "debug": false,
-            //         "newestOnTop": false,
-            //         "progressBar": false,
-            //         "positionClass": "toast-bottom-right",
-            //         "preventDuplicates": false,
-            //         "onclick": null,
-            //         "showDuration": "1000",
-            //         "hideDuration": "1000",
-            //         "timeOut": 0,
-            //         "extendedTimeOut": 0,
-            //         "showEasing": "swing",
-            //         "hideEasing": "linear",
-            //         "showMethod": "fadeIn",
-            //         "hideMethod": "fadeOut",
-            //         "tapToDismiss": false
-            //     }
-            //     console.log($('#share').attr('name'))
-
-            //     toastr.info("<input id=\"shareLink\" value=\"https://lime-4e46e.firebaseapp.com/share.html?budget=" + this.name + "\" readonly>" +
-            //         "</input><br><button class=\"btn btn-danger\"onclick=\"copyFunction()\">Copy to Clipboard</button>", "Share Link")
-
-
-            //}
         });
     }
 });

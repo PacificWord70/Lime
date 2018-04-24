@@ -133,9 +133,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         var str = "";
         var dt = new Date();
         for (bug of values) {
-            str = str + "<hr><h4>" + bug.name + " " + "<a id=\"share\"name=\"" + bug.BID + "\"><button type=\"button\" onclick=\"share(" + "\'" + bug.BID +"\'" + ")\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>" +
+            str = str + "<div id=\""+ bug.BID +"\"><hr><h4>" + bug.name + " " + "<a id=\"share\"name=\"" + bug.BID + "\"><button type=\"button\" onclick=\"share(" + "\'" + bug.BID +"\'" + ")\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>" +
                 "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>" +
-                "<button type=\"button\" class=\"btn btn-sm btn-outline-warning waves-effect\">Remove</button>" +
+                "<button type=\"button\" onclick=\"remove(" + "\'" + bug.BID +"\'" + ")\"class=\"btn btn-sm btn-outline-warning waves-effect\">Remove</button>" +
                 "</h4>"
             str = str + "<table class=\"table table-bordered\"><thead>" +
                 "<tr>" +
@@ -146,7 +146,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 "</tr></thead>"
             // console.log(bug)
             if (bug.Expenses == null || bug.Expenses[dt.getFullYear()] == null) {
-                str = str + "</table>"
+                str = str + "</table></div>"
             } else {
                 // console.log("Bug", bug.Expenses)
                 // console.log("Bug", bug.Expenses[dt.getFullYear()])
@@ -175,7 +175,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                             "</tr></tbody>"
                     }
                 }
-                str = str + "</table>"
+                str = str + "</table><div>"
 
                 // console.log(bug.name);
             }
@@ -213,4 +213,21 @@ toastr.options = {
 toastr.info("<input id=\"shareLink\" value=\"https://lime-4e46e.firebaseapp.com/share.html?budget=" + button.toString() + "\" readonly>" +
     "</input><br><button class=\"btn btn-danger\"onclick=\"copyFunction()\">Copy to Clipboard</button>", "Share Link")
 
+}
+
+
+function remove(budget) {
+    console.log(budget)
+    var user = firebase.auth().currentUser;
+    return firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
+        console.log(snapshot.val());
+        var updates = {};
+        var userObj = snapshot.val();
+        delete userObj[budget];
+        console.log(userObj)
+
+        $("#" + budget).remove();
+        updates['/UserInfo/' + user.uid + '/UserBudgets/'] = userObj;
+        return firebase.database().ref().update(updates);
+    });
 }
