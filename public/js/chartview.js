@@ -192,7 +192,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                     data.push(dataValues);
                     console.log("Cat", cat)
                     label.push(cat);
-                    dataNumber.push(0)
+                    dataNumber.push(bug.categories[cat].total)
                 }
             } else {
                 console.log("Budget", bug.Expenses[year][month])
@@ -224,19 +224,21 @@ firebase.auth().onAuthStateChanged(function (user) {
                     label.push(cat);
                     dataNumber.push(bug.categories[cat].total - spent)
                     console.log(cat)
-                    console.log(bug.categories[cat])
+                    // console.log()
                 }
                 console.log(bug.categories)
                 console.log(bug.name)
             }
             $('#mcatContainer').append(
-                "<div style=\"width:90%;\" class=\"animated fadeInBottom card z-depth-4\">" +
+                "<br>" +
+                "<div style=\"margin-bottom:2em\" class=\"animated fadeInBottom card z-depth-4\">" +
                 "<div class=\"card-body\">" +
                 "<div class=\"card-text\" id=\"" + "div" + "\">" +
                 "<canvas id=\"" + bug.BID + "\" width=\"300\" height=\"100\"></canvas>" +
                 "</div>" +
                 "</div>" +
-                "</div>")
+                "</div>" +
+                "<br>")
             console.log("Budget Name", bug.name)
             var cat = document.getElementById(bug.BID).getContext('2d');
             var myChart = new Chart(cat, {
