@@ -24,7 +24,6 @@ firebase.auth().onAuthStateChanged(function (user) {
             console.log(values);
             var str = ''
             for (var bug of values) {
-                // TODO: Add MDBootstrap classes
                 str = str + "<hr><h4>" + 
                         bug.name + " " + 
                         "<a id=\"share\"name=\"" + bug.BID +
@@ -41,12 +40,21 @@ firebase.auth().onAuthStateChanged(function (user) {
                 var year = String(dt.getFullYear());
                 var month = String(dt.getMonth());
                 if (bug.Expenses == null) {
+                    for (var cat in bug.categories) {
+                        console.log("Cat", cat)
+                        str = str +
+                            "<tbody><tr>" +
+                            "<td>" + cat + "</td>" +
+                            "<td>$" + 0 + "</td>" +
+                            "<td>$" + bug.categories[cat].total + "</td>" +
+                            "</tr></tbody>"
+                    }
                     str = str + "</table>"
                 } else {
                     console.log("Budget", bug.Expenses[year][month])
 
                     // console.log(bug.Expenses[dt.getFullYear()][dt.getMonth()][cat])
-
+                    console.log("BUG CATS", bug.categories)
                     for (var cat in bug.categories) {
                         console.log("Cat", cat)
                         var spent;
@@ -55,7 +63,6 @@ firebase.auth().onAuthStateChanged(function (user) {
                         } else {
                             spent = bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat].spent
                         }
-                        // console.log("Spent",bug.Expenses[dt.getFullYear()][dt.getMonth()].categories[cat].spent)
                         str = str +
                             "<tbody><tr>" +
                             "<td>" + cat + "</td>" +
@@ -71,7 +78,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 }
             }
 
-            console.log(str);
+            // console.log(str);
             budgetSummary.innerHTML = str;
             var share = document.getElementById('share');
             share.onclick = function () {
@@ -95,7 +102,6 @@ firebase.auth().onAuthStateChanged(function (user) {
                     "tapToDismiss": false
                 }
                 console.log($('#share').attr('name'))
-                //   toastr.success("");
 
                 toastr.info("<input id=\"shareLink\" value=\"https://lime-4e46e.firebaseapp.com/share.html?budget=" + this.name + "\" readonly>" +
                     "</input><br><button class=\"btn btn-danger\"onclick=\"copyFunction()\">Copy to Clipboard</button>", "Share Link")
