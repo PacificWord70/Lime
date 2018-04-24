@@ -2,7 +2,6 @@ var budgetSummary = document.getElementById('budgetSummary');
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (window.location.pathname == '/home.html') {
-        console.log("Here");
         return firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
             var reads = [];
             snapshot.forEach(function (childSnapshot) {
