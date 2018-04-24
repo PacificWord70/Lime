@@ -20,8 +20,6 @@
       var loginPassword = document.getElementById('loginpassword');
       var loginButton = document.getElementById('loginButton');
 
-      var logoutButton = document.getElementById('logout');
-
       var resetPasswordButton = document.getElementById('resetPassword');
       var resetEmail = document.getElementById('resetEmail');
 
@@ -182,15 +180,14 @@
         while (currentTime + miliseconds >= new Date().getTime()) {}
       }
 
-      if (logoutButton != null) {
-        logoutButton.onclick = function () {
-          firebase.auth().signOut().then(function () {
-            // Sign-out successful.
-          }).catch(function (error) {
-            // An error happened.
-          });
-        }
+      function hello() {
+        firebase.auth().signOut().then(function () {
+          // Sign-out successful.
+        }).catch(function (error) {
+          // An error happened.
+        });
       }
+
 
       if (loginButton != null) {
         loginButton.onclick = function () {
@@ -281,3 +278,4 @@
             });
         }
       }
+
