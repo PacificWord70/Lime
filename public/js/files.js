@@ -133,7 +133,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         var str = "";
         var dt = new Date();
         for (bug of values) {
-            str = str + "<hr><h4>" + bug.name + " " + "<a id=\"share\"name=\"" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>" +
+            str = str + "<hr><h4>" + bug.name + " " + "<a id=\"share\"name=\"" + bug.BID + "\"><button type=\"button\" onclick=\"share(" + "\'" + bug.BID +"\'" + ")\" class=\"btn btn-sm btn-outline-default waves-effect\">Share</button></a>" +
                 "</button><a href=\"message.html?BID=" + bug.BID + "\"><button type=\"button\" class=\"btn btn-sm btn-outline-success waves-effect\">Chat</button></a>" +
                 "<button type=\"button\" class=\"btn btn-sm btn-outline-warning waves-effect\">Remove</button>" +
                 "</h4>"
@@ -183,29 +183,34 @@ firebase.auth().onAuthStateChanged(function (user) {
         allexpenses.innerHTML = str
         var share = document.getElementById('share');
         share.onclick = function () {
-            // console.log(this);
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-bottom-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "1000",
-                "hideDuration": "1000",
-                "timeOut": 0,
-                "extendedTimeOut": 0,
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut",
-                "tapToDismiss": false
-            }
-            // console.log($('#share').attr('name'))
-            toastr.info("<input id=\"shareLink\" value=\"https://lime-4e46e.firebaseapp.com/share.html?budget=" + this.name + "\" readonly>" +
-                "</input><br><button class=\"btn btn-danger\"onclick=\"copyFunction()\">Copy to Clipboard</button>", "Share Link")
-
+            
         }
     });
 });
+
+function share(button) {
+console.log(button.toString());
+
+toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-bottom-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "1000",
+    "hideDuration": "1000",
+    "timeOut": 0,
+    "extendedTimeOut": 0,
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut",
+    "tapToDismiss": false
+}
+// console.log($('#share').attr('name'))
+toastr.info("<input id=\"shareLink\" value=\"https://lime-4e46e.firebaseapp.com/share.html?budget=" + button.toString() + "\" readonly>" +
+    "</input><br><button class=\"btn btn-danger\"onclick=\"copyFunction()\">Copy to Clipboard</button>", "Share Link")
+
+}
