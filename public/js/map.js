@@ -1,15 +1,16 @@
 var heatmapData = [
 
 ];
-var myVar = setTimeout(myTimer, 1000);
 
 function myTimer() {
+  console.log("Function")
   var heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData
   });
   heatmap.setMap(map);
 }
-myVar
+
+setTimeout("myTimer()", 1500);
 
 firebase.auth().onAuthStateChanged(function (user) {
   var home = new google.maps.LatLng(40.425869, -86.908066);
@@ -102,3 +103,5 @@ function geocodeAddress(geocoder, resultsMap, address) {
     }
   });
 }
+
+myTimer()

@@ -228,6 +228,7 @@ function remove(budget) {
 
         $("#" + budget).remove();
         updates['/UserInfo/' + user.uid + '/UserBudgets/'] = userObj;
-        return firebase.database().ref().update(updates);
+        firebase.database().ref().update(updates);
+        location.reload();
     });
 }
