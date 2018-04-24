@@ -49,39 +49,75 @@
 
     <br />
     <div class="container">
-        <br />
+        <br /><br />
         <div class="row justify-content-center">
             <div class="col-sm-8">
                 <div class="row justify-content-end">
-                    <div style="width:90%;" class="animated fadeInBottom card z-depth-4">
+                    <div style="width:100%;" class="animated fadeInBottom card z-depth-4">
                         <div class="card-body">
-                            <h1 class="card-title">Budgets Remaining this Month</h2>
+                            <h1 class="card-title">Budgeting for this Month</h2>
                             <div class="card-text" id="mbudgets">
-                                <canvas id="budgets" width="400" height="200"></canvas>
+                                <canvas id="budgets" width="300" height="100"></canvas>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br /><br /><br /><br /><br />
-                <div class="row justify-content-end">
-                    <div class="animated fadeInBottom card z-depth-4">
-                        <div class="card-body">
-                            <h1 class="card-title">Money by City</h2>
-                            <div class="card-text" id="mcity">
-                                <canvas id="city" width="200" height="200"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
                 </div>
             </div>
-            <div class="col-sm-1"></div>
+        </div>
+        <br /><hr><br />
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-sm-10">
+                <div class="animated fadeInBottom card z-depth-4">
+                    <div class="card-body">
+                        <h1 class="card-title">Daily Spending</h2>
+                        <div class="card-text" id="mcity">
+                            <canvas id="city" width="100" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-10">
+                <div class="animated fadeInBottom card z-depth-4">
+                    <div class="card-body">
+                        <div class="card-text" id="mline">
+                            <canvas id="line" width="200" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br /><br /><br />
+        <hr>
+        <br /><br />
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <br />
+                <div class="row justify-content-end">
+                    <div class="card col-md-7 col-sm-10">
+                        <br /><br />
+                        <h1>&emsp;Categories per Budget</h1>
+                        <hr>
+                    </div>
+                </div>
+                <br />
+                <!-- this is the thing to copy for each budget -->
+                <div class="row justify-content-end">
+                    <div style="width:90%;" class="animated fadeInBottom card z-depth-4">
+                        <div class="card-body">
+                            <div class="card-text" id="mcat">
+                                <canvas id="cat" width="300" height="100"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- copy ends here -->
+            </div>
             <div class="col-sm-3">
                 <div class="animated fadeInBottom card z-depth-4">
                     <div class="card-body">
-                        <h1 class="card-title">Total $$$$</h2>
+                        <h1 class="card-title">All Budgets</h2>
                         <div class="card-text" id="mtotal">
-                            <canvas id="total" width="200" height="1000"></canvas>
+                            <canvas id="total" width="200" height="500"></canvas>
                         </div>
                     </div>
                 </div>
@@ -110,6 +146,7 @@
     </script>
 
     <script>
+        //doughnut by day
         var ctxx = document.getElementById("city").getContext('2d');
         var myDoughnutChart = new Chart(ctxx, {
             type: 'doughnut',
@@ -121,14 +158,9 @@
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)'
                     ],
-                }],
+                }]
 
                 // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: [
-                    'Indianapolis',
-                    'Chicago',
-                    'West Lafayette'
-                ]
             },
             options:  {
                 scales: {
@@ -140,6 +172,7 @@
                 }
             }
         });
+        //total stacked bar
         var ctxxx = document.getElementById("total").getContext('2d');
         var stackedBar = new Chart(ctxxx, {
             type: 'bar',
@@ -177,6 +210,7 @@
                 }
             }
         });
+        //all budgets in month
         var ctx = document.getElementById("budgets").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -184,7 +218,7 @@
                 //labels should be the name of each of their budgets
                 labels: ["Budget1", "Budget2", "Budget3", "budget4", "Budget5", "budget6"],
                 datasets: [{
-                    label: ["list"],//,'list2'],//["Budget1", "Budget2", "Budget3", "budget4", "Budget5", "budget6"],
+                    label: "Positive is remaining funds, while negative is overspending",//,'list2'],//["Budget1", "Budget2", "Budget3", "budget4", "Budget5", "budget6"],
                     //data should be how much left in budgets
                     data: [12, -19, 3, 5, 2, 3],
                     backgroundColor: [
@@ -204,6 +238,68 @@
                         'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+        //categories for each budget
+        //repeat this block to create new graph
+        //also put on new card
+        var cat = document.getElementById("cat").getContext('2d');
+        var myChart = new Chart(cat, {
+            type: 'bar',
+            data: {
+                //labels should be the name of each of their budgets
+                labels: ["cat1", "cat2", "cat3", "cat4", "cat5", "cat6"],
+                datasets: [{
+                    label: ["Budget 1"],//,'list2'],//["Budget1", "Budget2", "Budget3", "budget4", "Budget5", "budget6"],
+                    //data should be how much left in budgets
+                    data: [12, -19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+        var line = document.getElementById("line").getContext('2d');
+        var myChart = new Chart(line, {
+            type: 'line',
+            data: {
+                //labels should be the name of each of their budgets
+                labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"],
+                datasets: [{
+                    data: [12, -19, 3, 5, -2, -3, -12, -19, 3, 5, 2, -3, -12, 19, 3, 5, 2, 3]
                 }]
             },
             options: {
