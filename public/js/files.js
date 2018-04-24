@@ -2,6 +2,8 @@ var allexpenses = document.getElementById('allexpenses');
 
 $(document).ready(function() {
     $('.js-example-basic-single').select2();
+    var dt = new Date();
+    $('#monthSelector').val(dt.getMonth()).change();
 });
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -69,16 +71,11 @@ firebase.auth().onAuthStateChanged(function (user) {
                             "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].streetaddr + "</td>" +
                             "<td>" + bug.Expenses[dt.getFullYear()][dt.getMonth()][d][exp].date + "</td>" +
                             "</tr></tbody>"
-                        // console.log(cat)
-                        // console.log(bug.categories[cat])
                     }
                 }
-                // console.log(bug.categories)
-                // console.log(bug.name)
                 str = str + "</table>"
 
                 console.log(bug.name);
-                // console.log(bug.Expenses)
             }
         }
         allexpenses.innerHTML = str

@@ -13,31 +13,7 @@ var colors = ['rgba(255, 99, 132, 0.2)',
 ]
 
 //doughnut by day
-var ctxx = document.getElementById("city").getContext('2d');
-var myDoughnutChart = new Chart(ctxx, {
-    type: 'doughnut',
-    data: {
-        datasets: [{
-            data: [10, 20, 30],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)'
-            ],
-        }]
 
-        // These labels appear in the legend and in the tooltips when hovering different arcs
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
 //total stacked bar
 var ctxxx = document.getElementById("total").getContext('2d');
 var stackedBar = new Chart(ctxxx, {
@@ -145,7 +121,31 @@ var myChart = new Chart(line, {
 console.log("COLOR", colors[3 % 12])
 firebase.auth().onAuthStateChanged(function (user) {
     var colorCount = -1;
-    return firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
+    // var ctxx = document.getElementById("city").getContext('2d');
+    // var myDoughnutChart = new Chart(ctxx, {
+    //     type: 'doughnut',
+    //     data: {
+    //         datasets: [{
+    //             data: [10, 20, 30],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)'
+    //             ],
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             yAxes: [{
+    //                 ticks: {
+    //                     beginAtZero: true
+    //                 }
+    //             }]
+    //         }
+    //     }
+    // });
+
+    firebase.database().ref('/UserInfo/' + user.uid + '/UserBudgets/').once('value').then(function (snapshot) {
         var reads = [];
         snapshot.forEach(function (childSnapshot) {
             var id = childSnapshot.key;
