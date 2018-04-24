@@ -13,6 +13,9 @@ Andrew Rothwell : arothwel@purdue.edu
 Technologies:
 
 * MDBootstrap
+* jQuery
+* Select2
+* Charts.js
 * Firebase
 * Google Maps API
 * Twilio API
